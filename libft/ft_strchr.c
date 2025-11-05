@@ -6,9 +6,11 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:16:49 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/05 16:39:39 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/05 18:03:58 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 char	*strchr(const char *str, int c)
 {
@@ -20,5 +22,7 @@ char	*strchr(const char *str, int c)
 	}
 	if ((char)c == '\0')
 		return ((char *)str);
+
+	return (NULL);
 }
 
