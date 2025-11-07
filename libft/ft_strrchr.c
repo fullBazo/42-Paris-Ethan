@@ -6,13 +6,13 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 17:14:05 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/05 18:52:06 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/07 10:45:13 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-char	*strrchr(const char *str, int c)
+char	*ft_strrchr(const char *str, int c)
 {
 	const char *last = NULL;
 
