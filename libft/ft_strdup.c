@@ -6,14 +6,13 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:21:25 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/05 17:12:13 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/10 14:27:42 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-//#include <stdio.h>
+#include "libft.h"
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(const char *str)
 {
 	int	len;
 
@@ -23,7 +22,7 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-char	*ft_strcpy(char *dest, char *src)
+char	*ft_strcpy(char *dest, const char *src)
 {
 	int	i;
 
@@ -37,10 +36,10 @@ char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-char	*ft_strdup(char *src)
+char	*ft_strdup(const char *src)
 {
 	char	*dup;
-	int		len;
+	size_t	len;
 
 	len = ft_strlen(src) + 1;
 	dup = malloc(len * sizeof(char));

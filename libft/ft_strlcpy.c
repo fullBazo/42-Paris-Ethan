@@ -6,13 +6,13 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:57:54 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/10 11:08:09 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/10 14:25:33 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-unsigned int	ft_strlcpy(char *dest, char *src, size_t size)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t	i;
 

@@ -6,11 +6,11 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 17:41:50 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/05 18:05:36 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/10 13:09:56 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

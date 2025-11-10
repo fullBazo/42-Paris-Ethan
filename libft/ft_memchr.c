@@ -6,12 +6,11 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 18:06:31 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/07 14:46:56 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/10 13:16:09 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memchr(const void *memBlock, int schar, size_t size)
 {

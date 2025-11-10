@@ -6,11 +6,11 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 17:14:05 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/10 11:09:01 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/10 13:17:38 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 char	*ft_strrchr(const char *str, int c)
 {

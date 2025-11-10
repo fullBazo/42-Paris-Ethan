@@ -6,12 +6,11 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 17:14:02 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/10 11:06:49 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/10 13:17:30 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {

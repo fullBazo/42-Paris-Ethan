@@ -6,13 +6,13 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 18:06:39 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/10 11:06:08 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/10 17:16:04 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	void	*p;
 
@@ -21,6 +21,6 @@ void	*calloc(size_t count, size_t size)
 	p = malloc(count * size);
 	if (p == NULL)
 		return (NULL);
-	ft_memset(p, 0, count * size);
+	memset(p, 0, count * size);
 	return (p);
 }

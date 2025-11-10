@@ -6,11 +6,11 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 17:50:09 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/05 18:39:36 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/10 13:16:35 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {
