@@ -38,6 +38,8 @@ fclean: clean
 	$(RM) $(NAME)
 	@echo "$(RED)Removed library file.$(RESET)"
 
+re : fclean all
+
 test: libftTester
 	@make -C libftTester
 
