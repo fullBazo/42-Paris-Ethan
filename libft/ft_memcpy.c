@@ -6,12 +6,11 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 18:06:24 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/07 10:45:27 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/10 13:16:20 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t size)
 {
