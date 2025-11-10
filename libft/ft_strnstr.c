@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 17:14:02 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/06 11:08:13 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/10 11:06:49 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 
 	if (*to_find == '\0')
 		return ((char *)str);
-
 	i = 0;
 	while (str[i] != '\0' && i < len)
 	{
@@ -49,4 +48,3 @@ int     main(void)
         return (0);
 }
 */
-

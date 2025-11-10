@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:16:49 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/07 10:18:17 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/10 11:07:51 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ char	*ft_strchr(const char *str, int c)
 	}
 	if ((char)c == '\0')
 		return ((char *)str);
-
 	return (NULL);
 }

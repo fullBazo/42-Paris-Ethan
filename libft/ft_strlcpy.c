@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:57:54 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/06 11:34:10 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/10 11:08:09 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ unsigned int	ft_strlcpy(char *dest, char *src, size_t size)
 	size_t	i;
 
 	i = 0;
-
 	if (size > 0)
 	{
 		while (i < size - 1 && src[i])
