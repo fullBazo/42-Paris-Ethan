@@ -6,14 +6,14 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 18:06:28 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/07 10:54:59 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/07 14:06:38 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
 
-int	memcmp(const void *p1, const void *p2, size_t size)
+int	ft_memcmp(const void *p1, const void *p2, size_t size)
 {
 	const unsigned char	*s1 = (const unsigned char *)p1;
 	const unsigned char	*s2 = (const unsigned char *)p2;

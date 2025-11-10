@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 17:14:05 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/07 10:45:13 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/10 11:09:01 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strrchr(const char *str, int c)
 {
-	const char *last = NULL;
+	const char	*last = NULL;
 
 	while (*str)
 	{
@@ -24,6 +24,5 @@ char	*ft_strrchr(const char *str, int c)
 	}
 	if ((char)c == '\0')
 		return ((char *)str);
-
 	return ((char *)last);
 }
