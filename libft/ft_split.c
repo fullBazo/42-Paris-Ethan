@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 14:32:59 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/11 17:20:42 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/11 17:53:50 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ static int	fill_word(char **words, const char *s, char c)
 			++len;
 			++s;
 		}
-		if (len)
+		if (len > 0)
 		{
 			if (safe_malloc(words, i, len + 1))
 				return (1);
+			ft_strlcpy(words[i], s - len, len + 1);
+			++i;
 		}
-		ft_strlcpy(words[i], s - len, len + 1);
-		++i;
 	}
 	return (0);
 }
