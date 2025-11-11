@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/05 18:06:39 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/11 12:23:05 by ehuet            ###   ########.fr       */
+/*   Created: 2025/11/11 12:29:57 by ehuet             #+#    #+#             */
+/*   Updated: 2025/11/11 12:50:45 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	void	*ptr;
-	size_t	total;
+	char	*str;
+	size_t	i;
+	size_t	j;
 
-	if (count != 0 && size != 0)
-	{
-		total = count * size;
-		if (total / size != count)
-			return (NULL);
-	}
-
-	ptr = malloc(count * size);
-	if (!ptr)
+	if (!s1 || !s2)
 		return (NULL);
-	ft_bzero(ptr, count * size);
-	return (ptr);
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j])
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	str[i + j] = '\0';
+	return (str);
 }
