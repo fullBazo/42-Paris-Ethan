@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 18:06:39 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/10 17:16:04 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/11 12:23:05 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*p;
+	void	*ptr;
+	size_t	total;
 
-	if (count > SIZE_MAX / size)
+	if (count != 0 && size != 0)
+	{
+		total = count * size;
+		if (total / size != count)
+			return (NULL);
+	}
+
+	ptr = malloc(count * size);
+	if (!ptr)
 		return (NULL);
-	p = malloc(count * size);
-	if (p == NULL)
-		return (NULL);
-	memset(p, 0, count * size);
-	return (p);
+	ft_bzero(ptr, count * size);
+	return (ptr);
 }

@@ -6,21 +6,11 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:21:25 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/10 14:27:42 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/11 12:26:39 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-size_t	ft_strlen(const char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
 
 char	*ft_strcpy(char *dest, const char *src)
 {
