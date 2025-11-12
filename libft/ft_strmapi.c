@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 12:53:31 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/12 14:36:48 by ehuet            ###   ########.fr       */
+/*   Created: 2025/11/12 14:13:10 by ehuet             #+#    #+#             */
+/*   Updated: 2025/11/12 14:37:19 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	start;
-	size_t	end;
+	unsigned int	i;
+	char			*res;
 
-	start = 0;
-	end = ft_strlen(s1);
-	if (!s1 || !set)
+	i = 0;
+	res = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!res)
 		return (NULL);
-	while (s1[start] && ft_strchr(set, s1[start]))
-		start++;
-	while (end > start && ft_strchr(set, s1[end - 1]))
-		end--;
-	return (ft_substr(s1, start, end - start));
+	while (i < ft_strlen(s))
+	{
+		res[i] = (*f)(i, s[i]);
+		i++;
+	}
+	res[i] = 0;
+	return (res);
 }
