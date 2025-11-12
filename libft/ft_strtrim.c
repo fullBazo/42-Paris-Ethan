@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 12:53:31 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/11 13:16:48 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/12 14:36:48 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	start;
 	size_t	end;
-
 
 	start = 0;
 	end = ft_strlen(s1);

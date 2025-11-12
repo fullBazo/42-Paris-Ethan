@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 14:32:59 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/11 17:53:50 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/12 10:45:01 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ static int	fill_word(char **words, const char *s, char c)
 	while (*s)
 	{
 		len = 0;
-		while (*s == c && *s)
+		while (*s == c && *s != 0)
 			++s;
-		while (*s != c && *s)
+		while (*s != c && *s != 0)
 		{
 			++len;
 			++s;
@@ -90,11 +90,10 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	return (res);
 }
-
 /*
 int	main(void)
 {
-	char	*str = "  e salut les amis comment ca va";
+	char	*str = "  e salut, les, amis, comment, ca, va,";
 	char	**c = ft_split(str, ' ');
 	size_t	i;
 
