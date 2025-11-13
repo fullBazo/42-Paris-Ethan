@@ -25,6 +25,7 @@ BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c
 # Object files
 OBJS = $(SRCS:.c=.o)
 
+OBJSBONUS = $(BONUS:.c=.o)
 # Rules
 
 all: $(NAME)
@@ -37,16 +38,16 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(YELLOW)Compiled $< to $@.$(RESET)"
 
-bonus: $(BONUS:.c=.o)
-	ar rcs $(NAME) $^
+bonus: $(OBJSBONUS)
+	ar rcs $(NAME) $(OBJSBONUS)
 	@echo "$(GREEN)Bonus object files added to $(NAME).$(RESET)"
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJSBONUS)
 	@echo "$(RED)Cleaned object files.$(RESET)"
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) 
 	@echo "$(RED)Removed library file.$(RESET)"
 
 re : fclean all

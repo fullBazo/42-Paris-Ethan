@@ -6,7 +6,21 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:57:26 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/12 16:57:27 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/13 14:56:01 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+int ft_lstsize(t_list *lst)
+{
+	int	n;
+	
+	n = 0;
+	while (lst != NULL)
+	{
+		n++;
+		lst = lst->next;
+	}
+	return (n);
+}
