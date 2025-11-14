@@ -6,13 +6,13 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:57:38 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/14 15:34:51 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/14 16:44:35 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*temp;
 

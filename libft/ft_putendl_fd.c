@@ -6,13 +6,13 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:16:13 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/12 15:39:42 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/14 16:46:51 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putendl_fd(char *s, int fd)
+void	ft_putendl_fd(char *s, int fd)
 {
 	write(fd, s, ft_strlen(s));
 	write(fd, "\n", 1);

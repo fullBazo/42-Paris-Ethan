@@ -6,16 +6,16 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:18:42 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/12 15:46:11 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/14 16:46:37 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	int	digit;
-	
+
 	if (n == -2147483648)
 		write(fd, "-2147483648", 11);
 	else if (n < 0)
