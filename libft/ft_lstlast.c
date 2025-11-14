@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:57:30 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/13 14:55:47 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/14 15:50:13 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstlast(t_list *lst)
 {
 	if (!lst)
 		return (NULL);
-	while (lst != NULL)
+	while (lst->next)
 	{
 		lst = lst->next;
 	}
