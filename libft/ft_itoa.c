@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 10:45:21 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/12 14:12:34 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/17 14:54:20 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*ft_itoa(int n)
 	max = n;
 	nb = count_char(max);
 	result = malloc(sizeof(char) * (nb + 1));
+	if (!result)
+		return (NULL);
 	result[nb--] = '\0';
 	if (max == 0)
 		result[0] = '0';

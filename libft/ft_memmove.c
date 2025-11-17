@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 18:06:22 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/10 13:16:28 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/17 14:32:26 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*ft_memmove(void *dest, const void *src, size_t size)
 	size_t	i;
 
 	i = 0;
+	if (!dest || !src)
+		return (NULL);
 	if (dest > src)
 	{
 		while (size > 0)
