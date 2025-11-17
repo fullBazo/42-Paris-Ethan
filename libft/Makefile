@@ -57,3 +57,5 @@ test: libftTester
 
 libftTester:
 	@git clone https://github.com/Tripouille/libftTester.git
+
+.PHONY: all clean fclean re bonus test libftTester
