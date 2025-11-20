@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:30:28 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/20 14:35:54 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/20 16:35:59 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ char	*ft_strdup(char *s)
 	char	*new_string;
 	int		i;
 	int		len;
-	
+
 	i = 0;
 	len = ft_strlen(s);
 	if (s == NULL)
 		return (NULL);
-	new_string = malloc(len = 1);
+	new_string = malloc(len + 1);
 	if (!new_string)
 		return (NULL);
 	while (s[i])
@@ -91,8 +91,8 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	i = 0;
 	while (i < len)
 	{
-			subs[i] = s[start + i];
-			i++;
+		subs[i] = s[start + i];
+		i++;
 	}
 	subs[i] = '\0';
 	return (subs);
