@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:29:49 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/20 14:37:04 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/20 16:36:13 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 42
+
 #endif
 
 # include <stdlib.h>
