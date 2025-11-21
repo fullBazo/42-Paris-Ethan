@@ -6,95 +6,82 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:30:28 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/20 16:35:59 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/21 16:09:25 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	int		size;
+	char	*res;
+	int		i;
+	int		j;
+
+	if (!s1 || !s2)
+		return (NULL);
+	i = 0;
+	size = ft_strlen(s1) + ft_strlen(s2);
+	res = malloc(size + 1);
+	if (!res)
+		return (NULL);
+	while (s1[i] != 0)
+	{
+		res[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j] != 0)
+		res[i++] = s2[j++];
+	res[size] = 0;
+	return (res);
+}
+
+char	*ft_strchr(const char *s1, int c)
+{
+	char	*s2;
+
+	s2 = (char *)s1;
+	while (*s2 != c && *s2 != 0)
+		s2++;
+	if (*s2 == c)
+		return (s2);
+	else
+		return (NULL);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	char	*str;
+	size_t	i;
+
+	str = (char *)s;
+	i = 0;
+	while (i < n)
+	{
+		str[i] = '\0';
+		i++;
+	}
+}
+
+void	*ft_calloc(size_t ec, size_t es)
+{
+	char	*res;
+
+	res = malloc(es * ec);
+	if (!res)
+		return (NULL);
+	ft_bzero(res, es * ec);
+	return (res);
+}
+
 size_t	ft_strlen(const char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (str[i])
 		i++;
 	return (i);
 }
-
-char	*ft_strdup(char *s)
-{
-	char	*new_string;
-	int		i;
-	int		len;
-
-	i = 0;
-	len = ft_strlen(s);
-	if (s == NULL)
-		return (NULL);
-	new_string = malloc(len + 1);
-	if (!new_string)
-		return (NULL);
-	while (s[i])
-	{
-		new_string[i] = s[i];
-		i++;
-	}
-	new_string[i] = '\0';
-	return (new_string);
-}
-
-void	*ft_memcpy(void *dest, const void *src, size_t size)
-{
-	size_t	i;
-
-	i = 0;
-	if (dest == src && size == 0)
-		return (dest);
-	while (i < size)
-	{
-		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-		i++;
-	}
-	return (dest);
-}
-
-char	*ft_strchr(const char *str, int c)
-{
-	while (*str)
-	{
-		if (*str == (char)c)
-			return ((char *)str);
-		str++;
-	}
-	if ((char)c == '\0')
-		return ((char *)str);
-	return (NULL);
-}
-
-char	*ft_substr(const char *s, unsigned int start, size_t len)
-{
-	char	*subs;
-	size_t	i;
-	size_t	s_len;
-
-	if (!s)
-		return (NULL);
-	s_len = ft_strlen(s);
-	if (start >= s_len)
-		return (ft_strdup(""));
-	if (len > s_len - start)
-		len = s_len - start;
-	subs = malloc(sizeof(char) * (len + 1));
-	if (!subs)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		subs[i] = s[start + i];
-		i++;
-	}
-	subs[i] = '\0';
-	return (subs);
-}
-
