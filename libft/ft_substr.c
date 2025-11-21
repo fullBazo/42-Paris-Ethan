@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:36:25 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/11 14:56:45 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/17 20:55:37 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	i = 0;
 	while (i < len)
 	{
-			subs[i] = s[start + i];
-			i++;
+		subs[i] = s[start + i];
+		i++;
 	}
 	subs[i] = '\0';
 	return (subs);
