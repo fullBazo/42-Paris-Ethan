@@ -6,19 +6,19 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:29:16 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/21 16:10:21 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/24 15:28:15 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_free(char *res, char *buf)
+char	*ft_free(char *res, char *buffer)
 {
-	char	*tmp;
+	char	*temp;
 
-	tmp = ft_strjoin(res, buf);
+	temp = ft_strjoin(res, buffer);
 	free(res);
-	return (tmp);
+	return (temp);
 }
 
 char	*ft_next(char *buffer)
@@ -86,7 +86,7 @@ char	*read_file(int fd, char *res)
 		buffer[readvalue] = 0;
 		res = ft_free(res, buffer);
 		if (ft_strchr(buffer, '\n'))
-			break ;
+			break ;   
 	}
 	free(buffer);
 	return (res);
