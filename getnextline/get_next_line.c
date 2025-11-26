@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:29:16 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/24 15:28:15 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/11/26 14:57:45 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*read_file(int fd, char *res)
 		buffer[readvalue] = 0;
 		res = ft_free(res, buffer);
 		if (ft_strchr(buffer, '\n'))
-			break ;   
+			break ;
 	}
 	free(buffer);
 	return (res);
