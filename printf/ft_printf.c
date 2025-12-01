@@ -6,57 +6,57 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 16:52:31 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/26 17:50:12 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/12/01 11:26:51 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-typedef struct s_sc
+int	printf_format(char c, va_list args)
 {
-	int	len;
-	int	width;
-}				t_sc;
+	int	count;
 
-
-const char	*ft_read_text(t_sc *sc, const char *format)
-{
-	char *next;
-
-	next = ft_strchr(format, );
-	if (next)
-		sc->width = next - format;
-	else
-		sc->width = ft_strlen(format);
-	write(1, format, sc->width);
-	sc->len += sc->width;
-	while (*format && *format != '%')
-		format++;
-	return (format);
+	count = 0;
+	if (c == 'c')
+		count += print_char(va_arg(args, int));
+	else if (c == 's')
+		count += print_string(va_arg(args, char *));
+	else if (c == 'p')
+		count += print_pointer(va_arg(args, void *));
+	else if (c == 'd' || c == 'i')
+		count += print_decimal(va_arg(args, int));
+	else if (c == 'u')
+		count += print_unsigned_decimal(va_arg(args, unsigned int));
+	else if (c == 'x')
+		count += print_hex(va_arg(args, unsigned int), 0);
+	else if (c == 'X')
+		count += print_hex(va_arg(args, unsigned int), 1);
+	else if (c == '%')
+		count += print_char('%');
+	return (count);
 }
 
-int	ft_printf(const char *format , ...)
+int	ft_printf(const char *format, ...)
 {
-	va_list	arg;
-	va_start(arg, format);
-	t_sc sc;
-	sc.len = 0;
-	sc.width = 0;
+	va_list	ap;
+	int		count;
+	int		i;
 
-	while(*format)
+	va_start(ap, format);
+	i = 0;
+	count = 0;
+	while (format[i])
 	{
-		if (*format == '%')
-			format = ft_search_arg(arg, format + 1, &sc);
-		else
-			format = ft_read_text(&sc, format);
-		if (!format)
+		if (format[i] == '%')
 		{
-			write(1, "(null)", 6);
-			va_end(arg);
-			return (sc.len);
+			i++;
+			if (format[i])
+				count += printf_format(format[i], ap);
 		}
-		format++;
+		else
+			count += write(1, &format[i], 1);
+		i++;
 	}
-	va_end(arg);
-	return (sc.len);
+	va_end(ap);
+	return (count);
 }

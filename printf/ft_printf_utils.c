@@ -6,31 +6,61 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 17:52:18 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/26 17:57:53 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/12/01 11:35:47 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strchr(const char *s)
+int	print_char(char c)
 {
-	while (*s)
-	{
-		if (*s == '%')
-			return ((char *)s);
-		s++;
-	}
-	if (!s)
-		return ((char *)s);
-	return (NULL);
+	write(1, &c, 1);
+	return (1);
 }
 
-size_t ft_strlen(const char *s)
+int	print_string(char *str)
 {
-	size_t i;
-	
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	int	count;
+
+	count = 0;
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	while (str[count])
+	{
+		write(1, &str[count], 1);
+		count++;
+	}	
+	return (count);
+}
+
+int	print_decimal(int n)
+{
+	long	nb;
+	int		count;
+
+	nb = n;
+	count = 0;
+	if (n < 0)
+	{
+		count += print_char('-');
+		nb = -nb;
+	}
+	if (nb >= 10)
+		count += print_decimal(nb / 10);
+	count += print_char((nb % 10) + '0');
+	return (count);
+}
+
+int	print_unsigned_decimal(unsigned int n)
+{
+	int	count;
+
+	count = 0;
+	if (n >= 10)
+		count += print_unsigned_decimal(n / 10);
+	count += print_char((n % 10) + '0');
+	return (count);
 }
