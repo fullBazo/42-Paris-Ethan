@@ -1,39 +1,38 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/12/01 15:10:28 by ehuet             #+#    #+#              #
+#    Updated: 2025/12/01 15:11:28 by ehuet            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libftprintf.a
 
-SRCS =  ft_printf.c \
-		ft_printf_utils.c \
-		ft_printf_utils2.c
+SRC =  ft_printf.c ft_printf_utils.c ft_printf_utils2.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS = ${SRC:.c=.o}
 
-CC = gcc
-
-CFLAGS = -Wall -Wextra -Werror
-
-AR = ar rcs
-
+CC = cc
 RM = rm -f
+CFLAGS = -Wall -Wextra -Werror
+INCLUDE = -I .
 
-INCLUDES = -I /home/ehuet/42/ethan_github_42/libft
+.o:.c
+		${CC} ${CFLAGS} ${INCLUDE} -c $< -o ${<:.c=.o}
 
-LIBFT = /home/ehuet/42/ethan_github_42/libft/libft.a
+$(NAME): ${OBJS}
+		ar rcs ${NAME} ${OBJS}
 
-.PHONY: all clean fclean re
-
-all: $(NAME)
-
-$(NAME): $(OBJS) $(LIBFT)
-	$(AR) $(NAME) $(OBJS)
-
-$(LIBFT):
-	make -C /home/ehuet/42/ethan_github_42/libft	
+all:	${NAME}
 
 clean:
-	$(RM) $(OBJS)
-	make -C /home/ehuet/42/ethan_github_42/libft clean	
+		${RM} ${OBJS}
 
 fclean: clean
-	$(RM) $(NAME)
-	make -C /home/ehuet/42/ethan_github_42/libft fclean
+		${RM} ${NAME}
 
 re: fclean all
