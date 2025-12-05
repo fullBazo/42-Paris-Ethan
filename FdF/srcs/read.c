@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:09:57 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/05 13:26:15 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/12/05 13:53:57 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	alloc_map(char *filename)
 	line = NULL;
 	count = 0;
 	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (-1);
 	while ((line = get_next_line(fd)))
 	{
 		count += ft_strlen(line);
@@ -30,9 +32,12 @@ int	alloc_map(char *filename)
 	return (count);
 }
 
+
+// pour l'instant je teste juste si ma fonction lit bien tout les char des .fdf
+// a voir comment malloc la place necessaire proprement
 int	main(void)
 {
-	char	*test = "./test_maps/basictest.fdf";
+	char	*test = "test_maps/mars.fdf";
 
 	ft_printf("%d\n", alloc_map(test));
 	return (0);
