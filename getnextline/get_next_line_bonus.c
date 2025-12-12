@@ -6,11 +6,11 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:29:16 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/26 14:57:50 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/12/02 16:38:30 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_free(char *res, char *buffer)
 {

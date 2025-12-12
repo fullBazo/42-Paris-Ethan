@@ -6,18 +6,24 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 09:52:20 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/14 16:49:57 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/12/03 14:20:09 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdint.h>
 # include <bsd/string.h>
+# include <sys/types.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -72,5 +78,17 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void	*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+char	*get_next_line(int fd);
+char	*read_file(int fd, char *res);
+
+int		ft_printf(const char *format, ...);
+int		print_char(char c);
+int		print_string(char *str);
+int		print_decimal(int n);
+int		print_unsigned_decimal(unsigned int n);
+int		print_hex(unsigned int n, int uppercase);
+int		print_pointer(void *ptr);
+int		print_hexlong(unsigned long n);
+
 
 #endif

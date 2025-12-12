@@ -6,30 +6,30 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:09:57 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/05 13:53:57 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/12/05 14:44:23 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fdf.h"
 
-int	alloc_map(char *filename)
+t_point	**alloc_map(char *filename, int *width, int *height)
 {
 	int 	fd;
+	int		i;
 	char	*line;
-	int		count;
+	int		z;
+	char	**values;
 	
 	line = NULL;
-	count = 0;
+	z = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (-1);
+		return (NULL);
 	while ((line = get_next_line(fd)))
 	{
-		count += ft_strlen(line);
-		free(line);
+		
 	}
-	return (count);
 }
 
 
@@ -37,8 +37,8 @@ int	alloc_map(char *filename)
 // a voir comment malloc la place necessaire proprement
 int	main(void)
 {
-	char	*test = "test_maps/mars.fdf";
+	char	*test = "test_maps/basictest.fdf";
 
-	ft_printf("%d\n", alloc_map(test));
+	ft_printf("%s\n", alloc_map(test));
 	return (0);
 }
