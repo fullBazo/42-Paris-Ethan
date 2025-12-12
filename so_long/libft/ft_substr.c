@@ -1,44 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.c                                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/03 16:09:57 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/05 14:44:23 by ehuet            ###   ########.fr       */
+/*   Created: 2025/11/10 17:36:25 by ehuet             #+#    #+#             */
+/*   Updated: 2025/11/17 20:55:37 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "fdf.h"
 
-t_point	**alloc_map(char *filename, int *width, int *height)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	int 	fd;
-	int		i;
-	char	*line;
-	int		z;
-	char	**values;
-	
-	line = NULL;
-	z = 0;
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
+	char	*subs;
+	size_t	i;
+	size_t	s_len;
+
+	if (!s)
 		return (NULL);
-	while ((line = get_next_line(fd)))
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	if (len > s_len - start)
+		len = s_len - start;
+	subs = malloc(sizeof(char) * (len + 1));
+	if (!subs)
+		return (NULL);
+	i = 0;
+	while (i < len)
 	{
-		
+		subs[i] = s[start + i];
+		i++;
 	}
+	subs[i] = '\0';
+	return (subs);
 }
 
-
-// pour l'instant je teste juste si ma fonction lit bien tout les char des .fdf
-// a voir comment malloc la place necessaire proprement
+/*
 int	main(void)
 {
-	char	*test = "test_maps/basictest.fdf";
+	char	*str;
 
-	ft_printf("%s\n", alloc_map(test));
-	return (0);
+	str = ft_substr("salut a tous", 3, 5);
+	printf("%s\n", str);
 }
+*/

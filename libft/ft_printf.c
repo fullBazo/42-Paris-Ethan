@@ -6,11 +6,11 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 16:52:31 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/03 11:42:56 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/12/03 14:17:48 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	printf_format(char c, va_list args)
 {
