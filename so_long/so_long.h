@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 12:47:09 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/12 12:57:24 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/12/17 14:18:32 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,22 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "mlx.h"
-# include "libft.h"
+//# include "mlx.h"
+# include "./libft/libft.h"
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
 	char	**map;
-	int		map_width;
 	int		map_height;
-	int		player_x;
-	int		player_y;
-	int		collectibles;
-	int		moves;
-	// void	*img_wall;
-	// void	*img_floor;
-	// void	*img_player;
-	// void	*img_exit;
-	// void	*img_collectible;
+	char	*filename;
+	int		fd;
 }				t_game;
 
-void	error_and_exit(const char *message);
-char	**read_map(const char *filename, t_game *game);
-void	validate_map(t_game *game);
-void	init_game(t_game *game);
-int		handle_keypress(int keycode, t_game *game);
-void	render_game(t_game *game);
-void	free_map(char **map);
+void	check_extension(t_game *game);
+void	openfile(t_game *game);
+void	count_height(t_game *game);
+void	read_map(t_game *game);
+void	parsing(t_game *game);
+void	init_struct(t_game *game, char **av);
+
 #endif
