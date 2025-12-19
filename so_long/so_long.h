@@ -21,24 +21,23 @@
 typedef struct s_game
 {
 	char	**map;
-	int		map_height;
+	int	map_height;
 	char	*filename;
-	int		fd;
-	int		exit;
-	int		players;
-	int		collectibles;
+	int	fd;
+	int	exit;
+	int	players;
+	int	collectibles;
 }				t_game;
 
 typedef struct s_ff
 {
 	char	**grid;
-	int		grid_width;
-	int		grid_height;
+	int	grid_width;
+	int	grid_height;
 	char	*line;
-	int		player_x;
-	int		player_y;
+	int	player_x;
+	int	player_y;
 	char	valid;
-	
 }				t_ff;
 
 void	check_extension(t_game *game);
