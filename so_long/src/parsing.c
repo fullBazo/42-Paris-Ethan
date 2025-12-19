@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:33:04 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/17 14:27:37 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/12/18 12:14:50 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	count_height(t_game *game)
 		game->map_height++;
 		line = get_next_line(game->fd);
 	}
+	free(line);
 	close(game->fd);
 }
 
@@ -56,7 +57,10 @@ void	read_map(t_game *game)
 	line = get_next_line(game->fd);
 	game->map = malloc(sizeof(char *) * (game->map_height + 1));
 	if (!game->map)
+	{
+		so_shlong_free_map(game);
 		exit(ft_printf("Error\nMalloc failed.\n"));
+	}
 	while (line)
 	{
 		if (line[ft_strlen(line) - 1] == '\n')
@@ -65,6 +69,7 @@ void	read_map(t_game *game)
 		free(line);
 		line = get_next_line(game->fd);
 	}
+	free(line);
 	game->map[i] = NULL;
 }
 
@@ -74,4 +79,9 @@ void	parsing(t_game *game)
 	openfile(game);
 	count_height(game);
 	read_map(game);
+	check_rectangle(game);
+	check_u_d_wall(game);
+	check_border(game);
+	check_valid_element(game);
+	check_elements(game);
 }
