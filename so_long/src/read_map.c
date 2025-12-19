@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 15:06:22 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/17 16:55:46 by ehuet            ###   ########.fr       */
+/*   Updated: 2025/12/18 11:45:31 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void	check_rectangle(t_game *game)
 {
-	int	i;
-	int	len;
+	int		i;
+	size_t	len;
 
 	i = 0;
 	len = ft_strlen(game->map[i++]);
 	while (game->map[i])
 	{
 		if (len != ft_strlen(game->map[i]))
+		{
+			so_shlong_free_map(game);
 			exit(ft_printf("Error\nNot a rectangle\n"));
+		}
 		i++;
 	}
 }
@@ -31,51 +34,97 @@ void	check_u_d_wall(t_game *game)
 {
 	int	i;
 	int	y;
-	int	len;
 
-	i = 0;
 	y = 0;
 	while (game->map[0][y])
 	{
 		if (game->map[0][y] != '1')
+		{
+			so_shlong_free_map(game);
 			exit(ft_printf("Error\nInvalid Walls.\n"));
+		}
 		y++;
 	}
 	i = 0;
 	y = 0;
+	while (game->map[i])
+		i++;
 	while (game->map[i - 1][y])
 	{
 		if (game->map[i - 1][y] != '1')
+		{
+			so_shlong_free_map(game);
 			exit(ft_printf("Error\nInvalid Walls.\n"));
+		}
 		y++;
 	}
 }
 
 void	check_border(t_game *game)
 {
-	int	i;
-	int	len;
+	int		i;
+	size_t	len;
 
 	i = 0;
 	while (game->map[i])
 	{
 		len = ft_strlen(game->map[i]);
 		if (game->map[i][0] != '1' || game->map[i][len - 1] != '1')
+		{
+			so_shlong_free_map(game);
 			exit(ft_printf("Error\nInvalid Walls.\n"));
+		}
 		i++;
 	}
 }
 
 void	check_valid_element(t_game *game)
 {
-	int		x;
+	int		i;
 	int		y;
-	char	c;
 	
-	x = 0;
-	y = 0;
-	while (game->map[x])
+	i = 0;
+	while (game->map[i])
 	{
-		
+		y = 0;
+		while (game->map[i][y])
+		{
+			if (!(ft_strchr("01PEC", game->map[i][y])))
+			{
+				so_shlong_free_map(game);
+				exit(ft_printf("Error\nInvalid characters.\n"));
+			}
+			y++;
+		}
+		i++;
 	}
 }
+
+void	check_elements(t_game *game)
+{
+	int	i;
+	int	y;
+
+	i = 0;
+	while (game->map[i])
+	{
+		y = 0;
+		while (game->map[i][y])
+		{
+			if (game->map[i][y] == 'P')
+				game->players++;
+			else if (game->map[i][y] == 'C')
+				game->collectibles++;
+			else if (game->map[i][y] == 'E')
+				game->exit++;
+			y++;
+		}
+		i++;
+	}
+	if (game->players != 1 || game->collectibles < 1 || game->exit != 1)
+	{
+		so_shlong_free_map(game);
+		exit(ft_printf("Error\nTo much elements or some missing.\n"));
+	}
+}
+
