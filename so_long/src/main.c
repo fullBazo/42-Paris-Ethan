@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:22:32 by ehuet             #+#    #+#             */
-/*   Updated: 2026/01/06 17:55:38 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/08 18:57:15 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	init_struct(t_ff *flood, t_game *game, char **av)
 	game->collectibles = 0;
 	game->exit = 0;
 	game->players = 0;
+	game->player_x = 0;
+	game->player_y = 0;
 	flood->grid = NULL;
 	flood->player_x = 0;
 	flood->player_y = 0;
@@ -48,6 +50,8 @@ int	main(int ac, char **av)
 	t_ff flood;
 	t_mlx mlx;
 	
+	game.mlx = &mlx;
+	
 	if (ac != 2)
 	{
 		ft_printf("Error\nInvalid ARGS.\n");
@@ -61,21 +65,22 @@ int	main(int ac, char **av)
 	init_windows(&mlx, &game);
 	load_img(&mlx);
 	render_map(&game, &mlx);
+	mlx_key_hook(mlx.mlx_window, key_hook, &game);
 	mlx_loop(mlx.mlx_connection);
 
 
-	for (int i = 0; i < game.map_height; i++)
-        printf("line %d: %s\n", i, game.map[i]);
+	// for (int i = 0; i < game.map_height; i++)
+    //     printf("line %d: %s\n", i, game.map[i]);
 
-    // Nettoyage
-    for (int i = 0; i < game.map_height; i++)
-        free(game.map[i]);
-    free(game.map);
+    // // Nettoyage
+    // for (int i = 0; i < game.map_height; i++)
+    //     free(game.map[i]);
+    // free(game.map);
 
-	ft_printf("%d\n", game.map_height);
+	// ft_printf("%d\n", game.map_height);
 
-	for (int i = 0; i < game.map_height; i++)
-    	printf("line %d: %s\n", i, flood.grid[i]);
+	// for (int i = 0; i < game.map_height; i++)
+    // 	printf("line %d: %s\n", i, flood.grid[i]);
 
-	printf("Player is in position : x : %d y : %d\n", flood.player_x, flood.player_y);
+	// printf("Player is in position : x : %d y : %d\n", flood.player_x, flood.player_y);
 }
