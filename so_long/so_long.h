@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 12:47:09 by ehuet             #+#    #+#             */
-/*   Updated: 2026/01/06 17:41:52 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/08 18:57:14 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@
 # include "libft/libft.h"
 # include <fcntl.h>
 # include "minilibx-linux/mlx.h"
+
+
+typedef struct s_mlx
+{
+	void	*wall;
+	void	*floor;
+	void	*player;
+	void	*exit;
+	void	*collect;
+	void	*mlx_connection;
+	void	*mlx_window;
+}				t_mlx;
 
 typedef struct s_game
 {
@@ -31,6 +43,8 @@ typedef struct s_game
 	int		player_x;
 	int		player_y;
 	int		moves;
+	void	*win;
+	t_mlx	*mlx;
 }				t_game;
 
 typedef struct s_ff
@@ -44,17 +58,6 @@ typedef struct s_ff
 	int		exit;
 }				t_ff;
 
-typedef struct s_mlx
-{
-	void	*wall;
-	void	*floor;
-	void	*player;
-	void	*exit;
-	void	*collect;
-	void	*mlx_connection;
-	void	*mlx_window;
-	// char	*sprite[5]
-}				t_mlx;
 
 void	check_extension(t_game *game);
 void	openfile(t_game *game);
@@ -80,7 +83,8 @@ void  	init_windows(t_mlx *mlx, t_game *game);
 void    load_img(t_mlx *mlx);
 void	put_tile(t_mlx *mlx, void *img, int x, int y);
 void	render_map(t_game *game, t_mlx *mlx);
-void	move_player(t_game *game, t_mlx *mlx, int dx, int dy);
+void	move_player(t_game *game, int px, int py);
+int		key_hook(int keycode, t_game *game);
 
 
 #endif
