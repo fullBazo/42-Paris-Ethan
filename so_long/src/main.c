@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:22:32 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/18 15:46:45 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/06 17:55:38 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,28 @@ void	init_struct(t_ff *flood, t_game *game, char **av)
 	flood->player_x = 0;
 	flood->player_y = 0;
 }
+void   init_windows(t_mlx *mlx, t_game *game)
+{
+    mlx->mlx_connection = mlx_init();
+    if (mlx->mlx_connection == NULL)
+    {
+        free(mlx->mlx_connection);
+        return ;
+    }
+    mlx->mlx_window = mlx_new_window(mlx->mlx_connection, game->map_width * 84, game->map_height * 84, "so_long");
+    if (mlx->mlx_window == NULL)
+    {
+        mlx_destroy_display(mlx->mlx_connection);
+        free(mlx->mlx_connection);
+        return ;
+    }
+}
 
 int	main(int ac, char **av)
 {
 	t_game game;
 	t_ff flood;
+	t_mlx mlx;
 	
 	if (ac != 2)
 	{
@@ -39,8 +56,14 @@ int	main(int ac, char **av)
 	init_struct(&flood, &game, av);
 	parsing(&game);
 	copy_map(&flood, &game);
-	player_pos(&flood);
-	
+	player_pos(&flood, &game);
+	valid_track(&flood);
+	init_windows(&mlx, &game);
+	load_img(&mlx);
+	render_map(&game, &mlx);
+	mlx_loop(mlx.mlx_connection);
+
+
 	for (int i = 0; i < game.map_height; i++)
         printf("line %d: %s\n", i, game.map[i]);
 

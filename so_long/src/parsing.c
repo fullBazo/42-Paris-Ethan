@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:33:04 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/18 12:14:50 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/05 14:31:32 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	read_map(t_game *game)
 	game->map = malloc(sizeof(char *) * (game->map_height + 1));
 	if (!game->map)
 	{
-		so_shlong_free_map(game);
+		free_game(game);
 		exit(ft_printf("Error\nMalloc failed.\n"));
 	}
 	while (line)

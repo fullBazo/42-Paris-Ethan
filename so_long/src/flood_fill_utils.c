@@ -6,51 +6,72 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 12:09:43 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/18 16:06:53 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/06 17:38:32 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	copy_map(t_ff *ff, t_game *game)
+void	copy_map(t_ff *flood, t_game *game)
 {
-	int i;
-	
-	ff->grid = malloc(sizeof(char *) * (game->map_height + 1));
-	game->map_height = ff->grid_height;
-	if (!ff->grid)
-	{
-		so_shlong_free_flood(ff);
-		exit(ft_printf("Error\nMalloc mon gars.\n"));
-	}
+	int	i;
+
 	i = 0;
+	flood->grid = malloc(sizeof (char *) * (game->map_height + 1));
+	if (!flood->grid)
+	{
+		free_flood(flood);
+		exit(ft_printf("Error\nMalloc failed.\n"));
+	}
 	while (game->map[i])
 	{
-		ff->grid[i] = ft_strdup(game->map[i]);
+		flood->grid[i] = ft_strdup(game->map[i]);
 		i++;
 	}
-	ff->grid[game->map_height] = NULL;
+	flood->grid[i] = NULL;
 }
 
-void	player_pos(t_ff *ff)
+void	player_pos(t_ff *flood, t_game *game)
 {
-	int x;
-	int y;
+	int i;
+	int	y;
 
-	x = 0;
-	while (ff->grid[x])
+	i = 0;
+	while (flood->grid[i])
 	{
 		y = 0;
-		while (ff->grid[x][y])
+		while (flood->grid[i][y])
 		{
-			if (ft_strchr("P", ff->grid[x][y]))
-				ff->player_y = y;
+			if (flood->grid[i][y] == 'P')
+			{
+				flood->player_x = y;
+				flood->player_y = i;
+				game->player_x = y;
+				game->player_y = i;
+			}
 			y++;
 		}
-		ff->player_x = x;
-		x++;
+		i++;
 	}
-	ff->grid_width = y;
 }
 
+int	count_line(t_ff *flood)
+{
+	int len;
 
+	len = 0;
+	while (flood->grid[len])
+		len++;
+	return (len);
+}
+int	count_length(t_ff *flood)
+{
+	int i;
+	int y;
+
+	i = 0;
+	y = 0;
+	while (flood->grid[i][y])
+		y++;
+	return (y);
+}

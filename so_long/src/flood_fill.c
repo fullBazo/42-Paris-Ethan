@@ -6,102 +6,58 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 10:54:25 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/18 16:17:47 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/05 17:39:35 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	flood_fill(t_ff *ff, int x, int y)
+int check_limits(t_ff *flood, int x, int y)
 {
-	if (x < 0 || x >= ff->grid_height || y < 0 || y >= ff->grid_width)
-		return ;
-	if (ff->grid[x][y] == '1')
-		return ;
-	ff->grid[y][x] = 'X';
-	flood_fill(ff->grid, x + 1, y, ff);
-	flood_fill(ff->grid, x - 1, y, ff);
-	flood_fill(ff->grid, x, y + 1, ff);
-	flood_fill(ff->grid, x, y - 1, ff);
+    if (y < 0 || y >= count_line(flood))
+        return (0);
+    if (x < 0 || x >= count_length(flood))
+        return (0);
+    return (1);
+}
+int flood_fill(t_ff *flood, int x, int y)
+{
+    if (!check_limits(flood, x, y))
+        return (0);
+
+    if (flood->grid[y][x] == '1' || flood->grid[y][x] == 'X')
+        return (1);
+
+    flood->grid[y][x] = 'X';
+
+    flood_fill(flood, x + 1, y);
+    flood_fill(flood, x - 1, y);
+    flood_fill(flood, x, y + 1);
+    flood_fill(flood, x, y - 1);
+
+    return (1);
 }
 
-int	count_collectible(t_ff *ff, t_game *game)
+void	valid_track(t_ff *flood)
 {
-    int x;
-    int	y;
-    int count;
-
-    y = 0;
-    while (ff->grid[y])
-    {
-	x = 0;
-	while (ff->grid[y][x])
-	{
-	    if (game->map[y][x] == 'C' && ff->grid[y][x] == 'X')
-		count++;
-	    x++;
-	}
-	y++;
-    }
-    return (0);
-}
-
-int	access_exit(t_game *game, t_ff *ff)
-{  
-	int	x;
 	int	y;
-	int	count;
+	int	x;
 
+	flood_fill(flood, flood->player_x, flood->player_y);
 	y = 0;
-	while (ff->grid[y])
+	while (y < count_line(flood))
 	{
 		x = 0;
-		while (ff->grid[y][x])
+		while (x < count_length(flood))
 		{
-			if (game->map[y][x] == 'E' && ff->grid[y][x] == 'X')
-			return (1);
+			if (flood->grid[y][x] == 'C'
+				|| flood->grid[y][x] == 'E')
+			{
+				free_flood(flood);
+				exit(ft_printf("Error\nMap is not solvable"));
+			}
 			x++;
 		}
-	y++;
+		y++;
 	}
-	return (0);
 }
-
-int	flood_result(t_ff *ff, t_game *game)
-{
-	int access;
-
-	access = count_collectible(ff, game);
-	if (access != game->collectible)
-    {
-		ft_printf("Error\nNot all collectibles are accessibles.\n");
-		return (0);
-    }
-    if (!access_exit(ff, game))
-    {
-		ft_printf("Error\nExit is not accessible.\n");
-		return (0);
-	}
-	return (1);
-}
-
-int	valid track(t_ff *ff, t_game *game)
-{
-	flood_fill(ff->grid, ff->player_x, ff->player_y);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,70 +1,110 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/12/12 12:27:33 by ehuet             #+#    #+#              #
-#    Updated: 2025/12/18 14:07:39 by ehuet            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# ======================
+#        PROGRAM
+# ======================
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-NAME = so_long
+NAME		= so_long
 
-# -------------------
-# Fichiers sources du projet
-# -------------------
-SRC = src/main.c src/parsing.c
+# ======================
+#        COMPILER
+# ======================
 
-# -------------------
-# Tous les fichiers libft nécessaires
-# -------------------
-LIBFT = libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c libft/ft_isalnum.c \
-        libft/ft_isalpha.c libft/ft_isascii.c libft/ft_isdigit.c libft/ft_isprint.c \
-        libft/ft_itoa.c libft/ft_memchr.c libft/ft_memcmp.c libft/ft_memcpy.c \
-        libft/ft_memmove.c libft/ft_memset.c libft/ft_printf.c libft/ft_printf_utils.c \
-        libft/ft_printf_utils2.c libft/ft_putchar_fd.c libft/ft_putendl_fd.c \
-        libft/ft_putnbr_fd.c libft/ft_putstr_fd.c libft/ft_split.c libft/ft_strchr.c \
-        libft/ft_strdup.c libft/ft_striteri.c libft/ft_strjoin.c libft/ft_strlcat.c \
-        libft/ft_strlcpy.c libft/ft_strlen.c libft/ft_strmapi.c libft/ft_strncmp.c \
-        libft/ft_strnstr.c libft/ft_strrchr.c libft/ft_strtrim.c libft/ft_substr.c \
-        libft/ft_tolower.c libft/ft_toupper.c libft/get_next_line.c
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror -g
 
-OBJ = src/main.o src/parsing.o src/read_map.o src/so_long_free.o src/flood_fill_utils.o \
-      libft/ft_atoi.o libft/ft_bzero.o libft/ft_calloc.o libft/ft_isalnum.o \
-      libft/ft_isalpha.o libft/ft_isascii.o libft/ft_isdigit.o libft/ft_isprint.o \
-      libft/ft_itoa.o libft/ft_memchr.o libft/ft_memcmp.o libft/ft_memcpy.o \
-      libft/ft_memmove.o libft/ft_memset.o libft/ft_printf.o libft/ft_printf_utils.o \
-      libft/ft_printf_utils2.o libft/ft_putchar_fd.o libft/ft_putendl_fd.o \
-      libft/ft_putnbr_fd.o libft/ft_putstr_fd.o libft/ft_split.o libft/ft_strchr.o \
-      libft/ft_strdup.o libft/ft_striteri.o libft/ft_strjoin.o libft/ft_strlcat.o \
-      libft/ft_strlcpy.o libft/ft_strlen.o libft/ft_strmapi.o libft/ft_strncmp.o \
-      libft/ft_strnstr.o libft/ft_strrchr.o libft/ft_strtrim.o libft/ft_substr.o \
-      libft/ft_tolower.o libft/ft_toupper.o libft/get_next_line.o
+# ======================
+#        DIRECTORIES
+# ======================
 
-INCLUDES = -I includes -I libft
+SRC_DIR		= src
+OBJ_DIR		= obj
+LIBFT_DIR	= libft
+MLX_DIR		= minilibx-linux
 
-# -------------------
-# Règles
-# -------------------
+# ======================
+#        SOURCES
+# ======================
+
+SRC_FILES	=	main.c \
+				parsing.c \
+				read_map.c \
+				flood_fill.c \
+				flood_fill_utils.c \
+				so_long_free.c
+
+SRCS		= $(addprefix $(SRC_DIR)/, $(SRC_FILES)) mlx/window.c
+
+# ======================
+#        OBJECTS
+# ======================
+
+OBJS		= $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o)) \
+			  $(OBJ_DIR)/window.o
+
+# ======================
+#        LIBRARIES
+# ======================
+
+LIBFT		= $(LIBFT_DIR)/libft.a
+MLX			= $(MLX_DIR)/libmlx.a
+
+LIBS		= -L$(LIBFT_DIR) -lft \
+			  -L$(MLX_DIR) -lmlx \
+			  -lXext -lX11 -lm
+
+INCLUDES	= -I. -I$(LIBFT_DIR) -I$(MLX_DIR)
+
+# ======================
+#        RULES
+# ======================
+
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
-%.o: %.c
+# ======================
+#        OBJECT RULES
+# ======================
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c so_long.h
+	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
+$(OBJ_DIR)/window.o: mlx/window.c so_long.h
+	mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+# ======================
+#        LIBFT
+# ======================
+
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
+# ======================
+#        MLX
+# ======================
+
+$(MLX):
+	make -C $(MLX_DIR)
+
+# ======================
+#        CLEAN
+# ======================
+
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
+	make -C $(LIBFT_DIR) clean
+	make -C $(MLX_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+# ======================
+#        PHONY
+# ======================
 
+.PHONY: all clean fclean re
