@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 15:06:22 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/18 11:45:31 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/06 16:10:01 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_rectangle(t_game *game)
 	{
 		if (len != ft_strlen(game->map[i]))
 		{
-			so_shlong_free_map(game);
+			free_game(game);
 			exit(ft_printf("Error\nNot a rectangle\n"));
 		}
 		i++;
@@ -40,7 +40,7 @@ void	check_u_d_wall(t_game *game)
 	{
 		if (game->map[0][y] != '1')
 		{
-			so_shlong_free_map(game);
+			free_game(game);
 			exit(ft_printf("Error\nInvalid Walls.\n"));
 		}
 		y++;
@@ -53,7 +53,7 @@ void	check_u_d_wall(t_game *game)
 	{
 		if (game->map[i - 1][y] != '1')
 		{
-			so_shlong_free_map(game);
+			free_game(game);
 			exit(ft_printf("Error\nInvalid Walls.\n"));
 		}
 		y++;
@@ -71,7 +71,7 @@ void	check_border(t_game *game)
 		len = ft_strlen(game->map[i]);
 		if (game->map[i][0] != '1' || game->map[i][len - 1] != '1')
 		{
-			so_shlong_free_map(game);
+			free_game(game);
 			exit(ft_printf("Error\nInvalid Walls.\n"));
 		}
 		i++;
@@ -86,15 +86,17 @@ void	check_valid_element(t_game *game)
 	i = 0;
 	while (game->map[i])
 	{
+		game->map_width = 0;
 		y = 0;
 		while (game->map[i][y])
 		{
 			if (!(ft_strchr("01PEC", game->map[i][y])))
 			{
-				so_shlong_free_map(game);
+				free_game(game);
 				exit(ft_printf("Error\nInvalid characters.\n"));
 			}
 			y++;
+			game->map_width++;
 		}
 		i++;
 	}
@@ -123,7 +125,7 @@ void	check_elements(t_game *game)
 	}
 	if (game->players != 1 || game->collectibles < 1 || game->exit != 1)
 	{
-		so_shlong_free_map(game);
+		free_game(game);
 		exit(ft_printf("Error\nTo much elements or some missing.\n"));
 	}
 }

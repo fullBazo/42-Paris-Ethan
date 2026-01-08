@@ -6,13 +6,13 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 11:21:24 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/18 14:39:36 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/05 14:26:40 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	so_shlong_free_map(t_game *game)
+void	free_game(t_game *game)
 {
 	int i;
 	
@@ -25,7 +25,7 @@ void	so_shlong_free_map(t_game *game)
 	free(game->map);
 }
 
-void	so_shlong_free_flood(t_ff *flood)
+void	free_flood(t_ff *flood)
 {
 	int i;
 	
