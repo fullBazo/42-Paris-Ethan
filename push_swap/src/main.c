@@ -6,39 +6,76 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:06 by ehuet             #+#    #+#             */
-/*   Updated: 2026/01/14 16:00:32 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/15 20:35:41 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	print_stack(t_node *stack)
+int	has_duplicates(t_node *stack)
 {
-	t_node *tmp = stack;
-	printf("Pile du top au bottom :\n");
-	while (tmp)
+	t_node	*i;
+	t_node	*j;
+
+	i = stack;
+	while (i)
 	{
-		printf("%d -> ", tmp->value);
-		tmp = tmp->next;
+		j = i->next;
+		while (j)
+		{
+			if (i->value == j->value)
+				return (1);
+			j = j->next;
+		}
+		i = i->next;
 	}
-	printf("NULL\n");
+	return (0);
 }
 
-int	main(int ac, char **av)
+void	push_swap(t_node **stack_a, t_node **stack_b, int ac)
 {
-	t_node *stack = NULL;
+	int	size;
+	int	*sorted;
 
-	if (ac < 2)
+	size = get_stack_size(*stack_a);
+	sorted = sorted_int(*stack_a);
+	if (!sorted)
+		return ;
+	assign_index(*stack_a, sorted, size);
+	if (is_sorted(*stack_a))
+		free_stack(*stack_a);
+	free(sorted);
+	if (ac <= 4)
 	{
-		printf("Usage: %s numbers...\n", av[0]);
-		return (0);
+		sort_3(stack_a);
+		return ;
 	}
+	if (ac <= 6)
+	{
+		sort_5(stack_a, stack_b);
+		return ;
+	} 
+	radix_sort(stack_a, stack_b);
+}
 
-	// Remplir la pile depuis les arguments
-	fill_stack(&stack, av);
+int	main(int argc, char **argv)
+{
+	t_node	*stack_a;
+	t_node	*stack_b;
 
-	// Afficher la pile pour vérifier
-	print_stack(stack);
-
+	stack_a = NULL;
+	stack_b = NULL;
+	if (argc < 2)
+		return (0);
+	fill_stack(&stack_a, argv);
+	if (has_duplicates(stack_a))
+	{
+		write(2, "Error\n", 6);
+		free_stack(stack_a);
+		exit(1);
+	}
+	push_swap(&stack_a, &stack_b, argc);
+	free_stack(stack_a);
+	free_stack(stack_b);
 	return (0);
 }
