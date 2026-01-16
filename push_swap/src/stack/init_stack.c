@@ -6,37 +6,26 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:54:39 by ehuet             #+#    #+#             */
-/*   Updated: 2026/01/13 16:43:28 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/15 20:30:27 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
-
-void	init_stack(t_stack *stack)
-{
-	stack->top = NULL;
-	stack->bottom = NULL;
-	stack->size = 0;
-}
-
 
 void	fill_stack(t_node **stack, char **av)
 {
 	int		i;
 	t_node	*new;
 	t_node	*tmp;
+	int		value;
 
 	i = 1;
-	if (!validate_args(av))
-	{
-		ft_printf("Error\n");
-		exit(1);
-	}
 	while (av[i])
 	{
-		new = new_node(ft_atoi(av[i]));
-
-		if (*stack == NULL)
+		is_max_min(*stack, av[i], &value);
+		new = new_node(value);
+		is_new_null(new);
+		if (!*stack)
 			*stack = new;
 		else
 		{
@@ -51,7 +40,7 @@ void	fill_stack(t_node **stack, char **av)
 
 t_node	*new_node(int value)
 {
-	t_node *node;
+	t_node	*node;
 
 	node = malloc(sizeof(t_node));
 	if (!node)
@@ -62,30 +51,15 @@ t_node	*new_node(int value)
 	return (node);
 }
 
-int	validate_args(char **av)
+void	free_stack(t_node *stack)
 {
-	int	i;
-	int	j;
+	t_node	*tmp;
 
-	i = 1;
-	while (av[i])
+	while (stack)
 	{
-		j = 0;
-		if (av[i][j] == '+' || av[i][j] == '-')
-		{
-			j++;
-			if (av[i][j] == '\0')
-				return (0);
-		}
-		while (av[i][j])
-		{
-			if (av[i][j] < '0' || av[i][j] > '9')
-				return (0);
-			j++;
-		}
-		i++;
+		tmp = stack;
+		stack = stack->next;
+		free(tmp);
 	}
-	return (1);
+	exit(1);
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:25:27 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/14 16:44:51 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/15 20:37:26 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,4 @@ t_list	*ft_lstnew(void *content)
 	element->content = content;
 	element->next = NULL;
 	return (element);
-} 
+}
