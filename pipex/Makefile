@@ -6,7 +6,7 @@
 #    By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/20 12:43:14 by ehuet             #+#    #+#              #
-#    Updated: 2026/01/20 14:51:27 by ehuet            ###   ########.fr        #
+#    Updated: 2026/01/26 14:32:19 by ehuet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ INCLUDES    = -I includes -I $(LIBFT_DIR)/includes
 
 SRCS =  src/main.c \
 		src/path.c \
+		src/utils.c \
+		src/pipe.c
 
 OBJS = $(SRCS:.c=.o)
 
