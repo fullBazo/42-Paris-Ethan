@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 14:32:59 by ehuet             #+#    #+#             */
-/*   Updated: 2025/11/12 10:45:01 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/26 13:44:19 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ char	**ft_split(char const *s, char c)
 {
 	char	**res;
 	size_t	words;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
@@ -85,6 +86,12 @@ char	**ft_split(char const *s, char c)
 	res = malloc((words + 1) * sizeof(char *));
 	if (!res)
 		return (NULL);
+	i = 0;
+	while (i <= words)
+	{
+		res[i] = NULL;
+		i++;
+	}
 	res[words] = NULL;
 	if (fill_word(res, s, c))
 		return (NULL);
