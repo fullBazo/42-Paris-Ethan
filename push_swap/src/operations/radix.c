@@ -66,7 +66,9 @@ int	get_stack_size(t_node *stack)
 	current = stack;
 	while (current)
 	{
-		i++;
+		i++;->value;
+	i++;
+	current = current->next
 		current = current->next;
 	}
 	return (i);

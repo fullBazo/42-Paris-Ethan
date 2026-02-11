@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 17:19:58 by ehuet             #+#    #+#             */
-/*   Updated: 2026/01/15 20:05:50 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/17 18:29:48 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ void	radix_sort(t_node **a, t_node **b)
 			count--;
 		}
 		while (*b)
-			pa(b, a);
+			pa(a, b);
 		bit++;
 	}
 }
 
 int	is_sorted(t_node *stack)
 {
-	t_node *current;
+	t_node	*current;
 
 	current = stack;
 	while (current->next)
@@ -63,44 +63,44 @@ int	is_sorted(t_node *stack)
 	return (1);
 }
 
-int get_max_index(t_node *stack)
+int	get_max_index(t_node *stack)
 {
-    int max;
-    t_node *tmp;
+	int		max;
+	t_node	*tmp;
 
-    if (!stack)
-        return (-1);
-    tmp = stack;
-    max = tmp->index;
+	if (!stack)
+		return (-1);
+	tmp = stack;
+	max = tmp->index;
 	while (tmp)
-    {
-        if (tmp->index > max)
-            max = tmp->index;
-        tmp = tmp->next;
-    }
-    return max;
+	{
+		if (tmp->index > max)
+			max = tmp->index;
+		tmp = tmp->next;
+	}
+	return (max);
 }
 
-int get_min_index(t_node *a)
+int	get_min_index(t_node *a)
 {
-    int min;
-    int min_index;
-    int i;
+	int	min;
+	int	min_index;
+	int	i;
 
-    if (!a)
-        return (-1);
-    min = a->index;
-    min_index = 0;
-    i = 0;
-    while (a)
-    {
-        if (a->index < min)
-        {
-            min = a->index;
-            min_index = i;
-        }
-        a = a->next;
-        i++;
-    }
-    return (min_index);
+	if (!a)
+		return (-1);
+	min = a->index;
+	min_index = 0;
+	i = 0;
+	while (a)
+	{
+		if (a->index < min)
+		{
+			min = a->index;
+			min_index = i;
+		}
+		a = a->next;
+		i++;
+	}
+	return (min_index);
 }

@@ -1,80 +1,61 @@
 /* ************************************************************************** */
-/*																			  */
-/*														  :::	   ::::::::   */
-/*	 mandatory.c										:+:		 :+:	:+:   */
-/*													  +:+ +:+		  +:+	  */
-/*	 By: ehuet <ehuet@student.42.fr>				+#+  +:+	   +#+		  */
-/*												  +#+#+#+#+#+	+#+			  */
-/*	 Created: 2026/01/30 16:09:39 by ehuet			   #+#	  #+#			  */
-/*	 Updated: 2026/02/06 12:02:59 by ehuet			  ###	########.fr		  */
-/*																			  */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mandatory.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/11 14:37:46 by ehuet             #+#    #+#             */
+/*   Updated: 2026/02/11 14:54:35 by ehuet            ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-double complex_x(int x, int width)
+double	complex_x(int x, int width, t_data *data)
 {
-	return ((double)x / width) * 3.5 - 2.5 ;
+	return (data->min_x + ((double)x / width) * (data->max_x - data->min_x));
 }
 
-double complex_y(int y, int height)
+double	complex_y(int y, int height, t_data *data)
 {
-	return ((double)y / height) * 2.0 - 1.0 ;
-}
-
-int	mandelbrot(t_fractol *f, double cr, double ci)
-{
-	double	zr;
-	double	 zi;
-	double	tmp;
-	int		i;
-
-	zr = 0;
-	zi = 0;
-	i = 0;
-	while (zr * zr + zi * zi <= 4 && i < f->max_iterations)
-	{
-		tmp = zr * zr - zi * zi + cr;
-		zi = 2 * zr * zi + ci;
-		zr = tmp;
-		i++;
-	}
-	return (i);
+	return (data->min_y + ((double)y / height) * (data->max_y - data->min_y));
 }
 
 void	put_color(t_data *data, int x, int y, int color)
 {
-	char    *dst;
+	char	*dst;
 
-    dst = data->address + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int*)dst = color;
+	dst = data->address;
+	dst += (y * data->line_l + x * (data->bpp / 8));
+	*(unsigned int *)dst = color;
 }
 
-void	render_mandel(t_data *data, t_fractol *f)
+int	create_color(int iter)
 {
-	int		x;
-	int		y;
-	double	cr;
-	double	ci;
-	int		iter;
-	int		color;
+	int	r;
+	int	g;
+	int	b;
+	int	color;
 
-	y = 0;
-	while (y < data->height)
+	r = 150 + (iter * 3) % 106;
+	g = (iter * 5) % 150;
+	b = 0;
+	color = (r << 16) | (g << 8) | b;
+	return (color);
+}
+
+int	mouse_hook(int keycode, int x, int y, t_data *data)
+{
+	if (keycode == 4)
 	{
-		x = 0;
-		while (x < data->width)
-		{
-			cr = complex_x(x, data->width);
-			ci = complex_y(y, data->height);
-			iter = mandelbrot(f, cr, ci);
-			if (iter == 100)
-				color = 0x00000000;				
-			else
-				color = 0x00FFFFFF;
-			put_color(data, x, y, color);
-			x++;
-		}
-		y++;
+		zoom_in(data, x, y);
+		return (0);
 	}
+	else if (keycode == 5)
+	{
+		zoom_out(data, x, y);
+		return (0);
+	}
+	return (1);
 }

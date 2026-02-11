@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 09:52:20 by ehuet             #+#    #+#             */
-/*   Updated: 2025/12/03 14:20:09 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/27 15:11:53 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,5 @@ int		print_unsigned_decimal(unsigned int n);
 int		print_hex(unsigned int n, int uppercase);
 int		print_pointer(void *ptr);
 int		print_hexlong(unsigned long n);
-
 
 #endif

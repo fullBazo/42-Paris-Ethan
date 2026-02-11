@@ -12,32 +12,7 @@ $> make
 
 An executable named "push_swap" will be created in the root of the repository. You now have to execute it with a set of arguments :
 
-$> ./push_swap 3 4 2 9 5 
-ra
-pb
-pb
-pb
-ra
-pa
-pa
-pa
-ra
-pb
-pb
-pb
-ra
-pa
-pa
-pa
-pb
-ra
-pb
-pb
-pb
-pa
-pa
-pa
-pa
+$> ./push_swap <random values separated by " "> 
 
 You also have to have at least 3 arguments, or the program will exit. If you try to run it with something other than digits,
 the program will display an error. If you try to run it with the 2 same digits, an Error will be displayed.
@@ -50,4 +25,4 @@ The youtuber Oceano was a great help to understand complicated concept I used :
 
 https://www.youtube.com/watch?v=OaG81sDEpVk&t=2379s&pp=ygUJcHVzaF9zd2Fw0gcJCU8KAYcqIYzv
 
-For the IA, I used ChatGPT as a mentor : I prompted mainly to help me understand 
+For the IA, I used ChatGPT as a mentor : I prompted mainly to help me understand the radix sort algorithm. 

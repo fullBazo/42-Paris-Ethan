@@ -30,7 +30,11 @@ MLX			= $(MLX_DIR)/libmlx.a
 
 # Source files
 SRC			= $(SRC_DIR)/main.c \
-			  $(SRC_DIR)/mandatory.c
+			  $(SRC_DIR)/mandatory.c \
+			  $(SRC_DIR)/utils.c \
+			  $(SRC_DIR)/julia.c \
+			  $(SRC_DIR)/moves.c \
+			  $(SRC_DIR)/mandelbrot.c \
 
 # Object files
 OBJ			= $(SRC:.c=.o)
