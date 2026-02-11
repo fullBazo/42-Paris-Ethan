@@ -1,14 +1,13 @@
-
 /* ************************************************************************** */
-/*																			  */
-/*														  :::	   ::::::::   */
-/*	 path.c												:+:		 :+:	:+:   */
-/*													  +:+ +:+		  +:+	  */
-/*	 By: ehuet <ehuet@student.42.fr>				+#+  +:+	   +#+		  */
-/*												  +#+#+#+#+#+	+#+			  */
-/*	 Created: 2026/01/20 14:49:20 by ehuet			   #+#	  #+#			  */
-/*	 Updated: 2026/01/26 10:41:33 by ehuet			  ###	########.fr		  */
-/*																			  */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   path.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/27 15:08:35 by ehuet             #+#    #+#             */
+/*   Updated: 2026/01/27 15:08:37 by ehuet            ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
@@ -27,7 +26,7 @@ char	**find_path(char **envp)
 	char	**path;
 
 	path = NULL;
-	while(*envp)
+	while (*envp)
 	{
 		if (ft_strncmp(*envp, "PATH=", 5) == 0)
 		{
@@ -48,23 +47,23 @@ char	*tab_path(char *cmd, char **path)
 	char	*temp;
 	char	**first_arg;
 
-	i = 0;
+	if (!cmd || !*cmd || !path)
+		return (NULL);
 	if (ft_strchr(cmd, '/'))
 		return (ft_strdup(cmd));
 	first_arg = split_cmd(cmd);
-	while (path[i])
+	if (!first_arg)
+		return (NULL);
+	i = -1;
+	while (path[++i])
 	{
 		temp = ft_strjoin(path[i], "/");
 		cmd_path = ft_strjoin(temp, first_arg[0]);
 		free(temp);
 		if (access(cmd_path, X_OK) == 0)
-		{
-			ft_free(first_arg);
-			return (cmd_path);
-		}
+			return (ft_free(first_arg), cmd_path);
 		free(cmd_path);
-		i++;
 	}
 	ft_free(first_arg);
-	return (cmd);
+	return (NULL);
 }

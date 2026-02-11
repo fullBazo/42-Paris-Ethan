@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:36:25 by ehuet             #+#    #+#             */
-/*   Updated: 2026/01/20 12:47:00 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/27 15:11:17 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	return (subs);
 }
 
-
 //int	main(void)
 //{
 //	char	*str;
@@ -46,4 +45,3 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 //	str = ft_substr("salut a tous", 3, 5);
 //	printf("%s\n", str);
 //}
-

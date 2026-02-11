@@ -6,17 +6,17 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:47 by ehuet             #+#    #+#             */
-/*   Updated: 2026/01/15 20:06:53 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/17 18:29:48 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void	pa(t_node **b, t_node **a)
+void	pa(t_node **a, t_node **b)
 {
 	t_node	*tmp;
 
-	if (!*b)
+	if (!b || !*b)
 		return ;
 	tmp = *b;
 	*b = (*b)->next;
@@ -29,7 +29,7 @@ void	pb(t_node **a, t_node **b)
 {
 	t_node	*tmp;
 
-	if (!*a)
+	if (!a || !*a)
 		return ;
 	tmp = *a;
 	*a = (*a)->next;

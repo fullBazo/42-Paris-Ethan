@@ -61,5 +61,5 @@ void	free_stack(t_node *stack)
 		stack = stack->next;
 		free(tmp);
 	}
-	exit(1);
+	exit(0);
 }

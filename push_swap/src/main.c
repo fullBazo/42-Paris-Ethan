@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:06 by ehuet             #+#    #+#             */
-/*   Updated: 2026/01/15 20:35:41 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/01/17 17:23:07 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	has_duplicates(t_node *stack)
 	return (0);
 }
 
-void	push_swap(t_node **stack_a, t_node **stack_b, int ac)
+void	push_swap(t_node **stack_a, t_node **stack_b)
 {
 	int	size;
 	int	*sorted;
@@ -42,19 +42,19 @@ void	push_swap(t_node **stack_a, t_node **stack_b, int ac)
 	if (!sorted)
 		return ;
 	assign_index(*stack_a, sorted, size);
+	free(sorted);
 	if (is_sorted(*stack_a))
 		free_stack(*stack_a);
-	free(sorted);
-	if (ac <= 4)
+	if (size <= 3)
 	{
 		sort_3(stack_a);
 		return ;
 	}
-	if (ac <= 6)
+	if (size <= 5)
 	{
 		sort_5(stack_a, stack_b);
 		return ;
-	} 
+	}
 	radix_sort(stack_a, stack_b);
 }
 
@@ -74,7 +74,7 @@ int	main(int argc, char **argv)
 		free_stack(stack_a);
 		exit(1);
 	}
-	push_swap(&stack_a, &stack_b, argc);
+	push_swap(&stack_a, &stack_b);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);

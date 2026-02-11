@@ -1,58 +1,73 @@
 /* ************************************************************************** */
-/*																			  */
-/*														  :::	   ::::::::   */
-/*	 main.c												:+:		 :+:	:+:   */
-/*													  +:+ +:+		  +:+	  */
-/*	 By: ehuet <ehuet@student.42.fr>				+#+  +:+	   +#+		  */
-/*												  +#+#+#+#+#+	+#+			  */
-/*	 Created: 2026/01/30 13:23:29 by ehuet			   #+#	  #+#			  */
-/*	 Updated: 2026/02/06 15:05:58 by ehuet			  ###	########.fr		  */
-/*																			  */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/11 14:53:26 by ehuet             #+#    #+#             */
+/*   Updated: 2026/02/11 15:01:14 by ehuet            ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-void	init_struct(t_data *data, t_fractol *f)
+void	init_struct(t_data *d)
 {
-	data->height = 600;
-	data->width = 800;
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, data->width, data->height, "fract-ol");
-	data->img = mlx_new_image(data->mlx, data->width, data->height);
-	data->address = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
-	f->max_iterations = 100;
+	d->height = 800;
+	d->width = 800;
+	d->mlx = mlx_init();
+	d->win = mlx_new_window(d->mlx, d->width, d->height, "fract-ol");
+	d->img = mlx_new_image(d->mlx, d->width, d->height);
+	d->address = mlx_get_data_addr(d->img, &d->bpp, &d->line_l, &d->endian);
+	d->min_x = -2.0;
+	d->max_x = 2.0;
+	d->min_y = -2.0;
+	d->max_y = 2.0;
+	d->julia = 0;
+	d->mandel = 0;
 }
 
-void    zoom_in(t_data *data, int mouse_x, int mouse_y)
+void	exec_julia(t_data *data, char **av)
 {
-	double 	min_x;
-	double	max_x;
-	double	min_y;
-	double	max_y;
-    double  mouse_cr = complex_x(mouse_x, data->width);
-    double  mouse_ci = complex_y(mouse_y, data->height);
-    double  zoom_factor = 0.8;  // Zoome de 20%
-    
-    double  range_x = (3.5 - 2.5) * zoom_factor;
-    double  range_y = (2.0 - 1.0) * zoom_factor;
-    
-    // Recentre autour du point de la souris
-    min_x = mouse_cr - range_x / 2;
-    max_x = mouse_cr + range_x / 2;
-    min_y = mouse_ci - range_y / 2;
-    max_y = mouse_ci + range_y / 2;
-    
-    // Ensuite re-render la fractale
+	init_struct(data);
+	data->julia = 1;
+	data->julia_cr = ft_atob(av[2]);
+	data->julia_ci = ft_atob(av[3]);
+	render_julia(data);
+	mlx_event_hook(data);
 }
 
-int	main()
+void	exec_mandel(t_data *data)
 {
-	t_data data;
-	t_fractol f;
+	init_struct(data);
+	data->mandel = 1;
+	render_mandel(data, 0, 0);
+	mlx_event_hook(data);
+}
 
-	init_struct(&data, &f);
-	render_mandel(&data, &f);
-	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
-	mlx_loop(data.mlx);
+int	main(int ac, char **av)
+{
+	t_data	data;
 
+	if (ac >= 2)
+	{
+		if (ft_strncmp(av[1], "mandelbrot", 11) == 0)
+		{
+			exec_mandel(&data);
+		}
+		else if (ft_strncmp(av[1], "julia", 6) == 0 && ac == 4)
+		{
+			if (parse_arg(av))
+			{
+				exec_julia(&data, av);
+			}
+			else
+				ft_printf("julia : args not valid.\nUse digits instead.\n");
+		}
+		else
+			ft_printf("args not valid : julia [value] [value] or mandelbrot\n");
+	}
+	else
+		ft_printf("args not valid : julia [value] [value] or mandelbrot\n");
 }
