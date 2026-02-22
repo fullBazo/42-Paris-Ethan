@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   messages.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 15:01:08 by ehuet             #+#    #+#             */
-/*   Updated: 2026/02/22 15:05:42 by ehuet            ###   ########.fr       */
+/*   Created: 2026/02/22 14:52:05 by ehuet             #+#    #+#             */
+/*   Updated: 2026/02/22 14:52:12 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#ifndef MESSAGES_H
+# define MESSAGES_H
 
-int	is_valid_arg(char *str)
-{
-	int	i;
+//MESSAGES
+# define MSG_OK 0
 
-	i = 0;
-	if (!str[i])
-		return (0);
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		i++;
-	}
-	if (i > 10)
-		return (0);
-	if (ft_atoi(str) > 2147483647 || ft_atoi(str) < 1)
-		return (0);
-	return (1);
-}
+//ERRORS
+# define ERR_BASE 1
+# define ERR_MALLOC 2
+# define ERR_MUTEX 3
+# define ERR_GET_TIME 4
+# define ERR_ARGS_NB 11
+# define ERR_ARGS_FORMAT 12
+
+//MESSAGES
+int	msg(int msg_code);
+
+#endif

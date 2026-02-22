@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethan <ethan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:23:23 by ehuet             #+#    #+#             */
-/*   Updated: 2026/02/19 13:24:47 by ethan            ###   ########.fr       */
+/*   Updated: 2026/02/22 16:16:45 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 
+# include "messages.h"
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -45,5 +46,9 @@ typedef struct s_philo
 long long			convert_time(void);
 int					is_valid_arg(char *str);
 long long			ft_atoi(const char *str);
+void				init_fork(t_data *data);
+t_philo				*init_philo(t_data *data);
+void				init_print_mutex(t_data *data);
+void				ft_putstr_fd(char *s, int fd);
 
 #endif
