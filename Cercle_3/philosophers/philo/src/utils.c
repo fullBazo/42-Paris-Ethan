@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethan <ethan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 14:13:39 by ehuet             #+#    #+#             */
-/*   Updated: 2026/02/19 13:34:53 by ethan            ###   ########.fr       */
+/*   Updated: 2026/02/22 16:15:54 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ long long	ft_atoi(const char *str)
 
 long long	convert_time(void)
 {
-	struct timeval tv;
-	long long res;
+	struct timeval	tv;
+	long long		res;
 
 	res = 0;
 	gettimeofday(&tv, NULL);
@@ -38,4 +38,16 @@ long long	convert_time(void)
 	tv.tv_usec /= 1000;
 	res = tv.tv_sec + tv.tv_usec;
 	return (res);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int i;
+
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
 }

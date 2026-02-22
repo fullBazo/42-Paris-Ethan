@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandatory.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethan <ethan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:31:56 by ehuet             #+#    #+#             */
-/*   Updated: 2026/02/19 13:11:25 by ethan            ###   ########.fr       */
+/*   Updated: 2026/02/22 16:06:10 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	init_fork(t_data *data)
 
 t_philo	*init_philo(t_data *data)
 {
-	t_philo *p;
-	int i;
+	t_philo	*p;
+	int		i;
 
 	p = malloc(sizeof(t_philo) * data->nb_philo);
 	if (!p)
@@ -49,4 +49,19 @@ t_philo	*init_philo(t_data *data)
 void	init_print_mutex(t_data *data)
 {
 	pthread_mutex_init(&data->p_mutex, NULL);
+}
+
+void	*routine(void *rout)
+{
+	t_philo *data;
+
+	data = (t_philo *)rout;
+	if (data->data->nb_philo == 1)
+	{
+		pthread_mutex_lock(data->data->forks);
+		printf("Philo 1 has taken a fork");
+		usleep(data->data->die);
+		printf("Philo 1 has died");
+		return (NULL);
+	}
 }
