@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ethan <ethan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:23:23 by ehuet             #+#    #+#             */
-/*   Updated: 2026/02/18 16:01:37 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/02/19 13:24:47 by ethan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,6 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
-
-typedef struct s_philo
-{
-	int				id;
-	int				meals;
-	long long		last_meal;
-	pthread_t		thread;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-}					t_philo;
 
 typedef struct s_data
 {
@@ -41,7 +31,18 @@ typedef struct s_data
 	long long		start_time;
 }					t_data;
 
-void				*philo_eat(void *data);
+typedef struct s_philo
+{
+	t_data			*data;
+	int				id;
+	int				meals;
+	long long		last_meal;
+	pthread_t		thread;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+}					t_philo;
+
+long long			convert_time(void);
 int					is_valid_arg(char *str);
 long long			ft_atoi(const char *str);
 
