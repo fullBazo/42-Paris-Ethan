@@ -140,7 +140,7 @@ int	main(int ac, char **av)
 	if (cpt < 0)
 		return (fprintf(stdout, "Error : l"), free(buff), 1);
 	match = buff;
-	while ((match = memmem(match, total - (match - buff), av[1], len)) != NULL)
+	while ((match = memmem(match, total - (match - buff), av[1], len)))
 	{
 		for (int i = 0; i < len; i++)
 			match[i] = '*';
