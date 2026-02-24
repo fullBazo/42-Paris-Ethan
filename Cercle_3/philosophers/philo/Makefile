@@ -6,7 +6,7 @@
 #    By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/17 15:50:11 by ehuet             #+#    #+#              #
-#    Updated: 2026/02/22 12:00:28 by ehuet            ###   ########.fr        #
+#    Updated: 2026/02/24 13:39:07 by ehuet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME	= philo
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -g3
 
-SRC		= src/main.c src/mandatory.c src/utils.c src/parsing.c
+SRC		= src/main.c src/init.c src/routine.c src/safe_alloc.c \
+		  src/utils.c src/parsing.c src/utils2.c
 OBJ		= $(SRC:.c=.o)
 
 all: $(NAME)

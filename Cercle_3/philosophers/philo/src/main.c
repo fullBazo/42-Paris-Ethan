@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/17 15:37:52 by ehuet             #+#    #+#             */
-/*   Updated: 2026/02/23 15:08:06 by ehuet            ###   ########.fr       */
+/*   Created: 2026/02/24 15:12:40 by ehuet             #+#    #+#             */
+/*   Updated: 2026/02/24 16:17:04 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,25 @@
 
 int	main(int ac, char **av)
 {
-	t_data		data;
-	t_philo		*philo;
-	pthread_t	*thread;
-	int			i;
+	int i;
+	t_data data;
 
+	i = 1;
 	if (ac != 5 && ac != 6)
-		return ();
-	i = 0;
-	init_struct(&data, av);
-	init_fork(&data);
-	init_print_mutex(&data);
-	philo = init_philo(&data);
-	thread = malloc(sizeof(pthread_t) * data.nb_philo);
-	if (!thread)
-		return ();
-	while (i < data.nb_philo)
 	{
-		pthread_create(&thread[i], NULL, routine, &philo[i]);
-		i++;
+		printf("Invalid number of args: 4 or 5\n");
+		return (1);
 	}
-	i = 0;
-	while (i < data.nb_philo)
+	while (av[i])
 	{
-		pthread_join(thread[i], NULL);
-		i++;
+		if (valid_arg(av[i++]) == NULL)
+			return (1);
 	}
+	if (init_table(&data, av) != 0)
+		return (1);
+	if (init_data(&data) != 0)
+		return (1);
+	init_thread(&data);
+	cleanup(&data);
+	return (0);
 }
