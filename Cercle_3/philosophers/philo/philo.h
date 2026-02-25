@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/25 13:35:05 by ehuet             #+#    #+#             */
+/*   Updated: 2026/02/25 14:08:55 by ehuet            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -26,20 +38,19 @@ typedef enum e_mtx
 typedef struct s_philo
 {
 	int					id;
-	_Atomic int meals;
-	_Atomic long long last_meal;
+	_Atomic int			meals;
+	_Atomic long long	last_meal;
 	pthread_t			thread;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
 	t_data				*data;
-	_Atomic bool full;
+	_Atomic bool		full;
 }						t_philo;
 
 typedef struct s_data
 {
-	_Atomic bool end_simulation;
+	_Atomic bool		end_simulation;
 	int					nb_philo;
-	int					must_eat;
 	long long			time_to_die;
 	long long			time_to_eat;
 	long long			time_to_sleep;
@@ -51,18 +62,40 @@ typedef struct s_data
 	t_philo				*philos;
 }						t_data;
 
-void					ft_print(t_philo *p, char *str);
-long long				convert_time(void);
-long long				ft_atol(char *str);
+// utils.c
+bool					is_digit(char c);
+bool					is_space(char c);
 char					*valid_arg(char *str);
+long long				ft_atol(char *str);
+
+// utils2.c
+long long				convert_time(void);
 void					ft_usleep(long long time);
-void					init_philo(t_data *data);
+void					ft_print(t_philo *p, char *str);
+void					cleanup(t_data *data);
+
+// parsing.c
 int						init_table(t_data *data, char **av);
+
+// init.c
+void					assign_forks(t_philo *philo, t_data *data, int i);
+void					init_philo(t_data *data);
 int						init_data(t_data *data);
-void					init_thread(t_data *data);
+
+// safe_alloc.c
+void					thread_or_mtx_error(int status);
 void					safe_mtx(pthread_mutex_t *mtx, t_mtx code);
 void					safe_thread(pthread_t *thread, void *(*foo)(void *),
 							void *data, t_mtx code);
-void					cleanup(t_data *data);
+
+// routine.c
+void					*routine(void *data);
+void					*monitor(void *data);
+void					*philo_1(void *data);
+void					init_thread(t_data *data);
+void					forks_taking(void *data);
+
+// main.c
+int						main(int ac, char **av);
 
 #endif
