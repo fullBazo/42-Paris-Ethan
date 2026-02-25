@@ -1,0 +1,62 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/25 13:28:47 by ehuet             #+#    #+#             */
+/*   Updated: 2026/02/25 13:28:48 by ehuet            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../philo.h"
+
+bool	is_digit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+bool	is_space(char c)
+{
+	return ((c >= 9 && c <= 13) || c == 32);
+}
+
+char	*valid_arg(char *str)
+{
+	int		len;
+	char	*nb;
+
+	len = 0;
+	while (is_space(*str))
+		str++;
+	if (*str == '+')
+		str++;
+	else if (*str == '-')
+		return (printf("Only positive numbers\n"), NULL);
+	while (str[len])
+	{
+		if (!is_digit(str[len]))
+			return (printf("Only digits\n"), NULL);
+		len++;
+	}
+	if (len > 10)
+		return (printf("Number too big\n"), NULL);
+	nb = str;
+	return (nb);
+}
+
+long long	ft_atol(char *str)
+{
+	long long	result;
+
+	result = 0;
+	str = valid_arg(str);
+	if (!str)
+		return (-1);
+	while (is_digit(*str))
+		result = result * 10 + (*str++ - 48);
+	if (result > INT_MAX)
+		return (-1);
+	return (result);
+}
