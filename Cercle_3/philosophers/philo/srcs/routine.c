@@ -6,22 +6,24 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:28:41 by ehuet             #+#    #+#             */
-/*   Updated: 2026/02/25 14:25:15 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/02/26 14:16:43 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	forks_taking(void *data)
+void	eating(t_philo *p)
 {
-	t_philo	*p;
-
-	p = (t_philo *)data;
 	safe_mtx(p->left_fork, LOCK);
 	ft_print(p, "has taken a fork\n");
 	safe_mtx(p->right_fork, LOCK);
 	ft_print(p, "has taken a fork\n");
 	ft_print(p, "is eating\n");
+	p->last_meal = convert_time() - p->data->start_time;
+	ft_usleep(p->data->time_to_eat, p->data);
+	p->meals++;
+	safe_mtx(p->left_fork, UNLOCK);
+	safe_mtx(p->right_fork, UNLOCK);
 }
 
 void	*routine(void *data)
@@ -30,30 +32,23 @@ void	*routine(void *data)
 
 	p = (t_philo *)data;
 	if (p->id % 2 == 0)
-		ft_usleep(p->data->time_to_eat);
+		ft_usleep(p->data->time_to_eat, p->data);
 	while (!p->data->end_simulation)
 	{
-		// p->last_meal = convert_time();
-		forks_taking(p);
-		p->last_meal = convert_time() - p->data->start_time;
-		// printf("%lld\n", p->last_meal);
-		// printf("%lld\n", p->data->time_to_die);
-		ft_usleep(p->data->time_to_eat);
-		p->meals++;
-		safe_mtx(p->left_fork, UNLOCK);
-		safe_mtx(p->right_fork, UNLOCK);
+		eating(p);
 		if (p->meals == p->data->nb_meals)
 		{
 			p->full = true;
 			return (NULL);
 		}
 		ft_print(p, "is sleeping\n");
-		ft_usleep(p->data->time_to_sleep);
+		ft_usleep(p->data->time_to_sleep, p->data);
 		ft_print(p, "is thinking\n");
 		if (p->data->nb_philo % 2 != 0)
 		{
 			if ((2 * p->data->time_to_eat - p->data->time_to_sleep) > 0)
-				ft_usleep(2 * p->data->time_to_eat - p->data->time_to_sleep);
+				ft_usleep(2 * p->data->time_to_eat - p->data->time_to_sleep,
+					p->data);
 		}
 	}
 	return (NULL);
@@ -106,7 +101,7 @@ void	*philo_1(void *data)
 	p = (t_philo *)data;
 	safe_mtx(p->left_fork, LOCK);
 	ft_print(p, "has taken a fork\n");
-	ft_usleep(p->data->time_to_die);
+	ft_usleep(p->data->time_to_die, p->data);
 	ft_print(p, "died\n");
 	safe_mtx(p->left_fork, UNLOCK);
 	return (NULL);
