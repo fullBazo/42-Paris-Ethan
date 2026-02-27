@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:28:33 by ehuet             #+#    #+#             */
-/*   Updated: 2026/02/25 13:37:50 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/02/26 13:56:03 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	init_data(t_data *data)
 		return (1);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
 	if (!data->forks)
-		return (free(data->philos), 1);
+		return (1);
 	while (i < data->nb_philo)
 		safe_mtx(&data->forks[i++], INIT);
 	safe_mtx(&data->p_mutex, INIT);
@@ -71,7 +71,10 @@ void	init_thread(t_data *data)
 
 	i = -1;
 	if (data->nb_meals == 0)
+	{
+		printf("At least 1 meal, please\n");
 		return ;
+	}
 	if (data->nb_philo == 1)
 	{
 		safe_thread(&data->philos[0].thread, philo_1, &data->philos[0], CREATE);

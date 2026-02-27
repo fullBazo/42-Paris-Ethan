@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:28:50 by ehuet             #+#    #+#             */
-/*   Updated: 2026/02/25 13:28:51 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/02/26 10:38:35 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,17 @@ long long	convert_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-void	ft_usleep(long long time)
+void	ft_usleep(long long time, t_data *data)
 {
 	long long	target;
 
 	target = convert_time() + time;
 	while (convert_time() < target)
+	{
+		if (data->end_simulation)
+			return ;
 		usleep(100);
+	}
 }
 
 void	ft_print(t_philo *p, char *str)

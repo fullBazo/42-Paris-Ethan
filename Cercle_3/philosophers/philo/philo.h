@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:35:05 by ehuet             #+#    #+#             */
-/*   Updated: 2026/02/25 14:08:55 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/02/26 12:02:15 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ long long				ft_atol(char *str);
 
 // utils2.c
 long long				convert_time(void);
-void					ft_usleep(long long time);
+void					ft_usleep(long long time, t_data *data);
 void					ft_print(t_philo *p, char *str);
 void					cleanup(t_data *data);
 
@@ -93,7 +93,7 @@ void					*routine(void *data);
 void					*monitor(void *data);
 void					*philo_1(void *data);
 void					init_thread(t_data *data);
-void					forks_taking(void *data);
+void					eating(t_philo *p);
 
 // main.c
 int						main(int ac, char **av);
