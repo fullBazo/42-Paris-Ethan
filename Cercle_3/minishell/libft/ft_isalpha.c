@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/28 11:17:38 by ehuet             #+#    #+#             */
-/*   Updated: 2026/02/28 11:49:45 by ehuet            ###   ########.fr       */
+/*   Created: 2025/11/05 14:40:22 by ehuet             #+#    #+#             */
+/*   Updated: 2025/11/10 13:15:24 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_isalpha(int c)
 {
-	rl_bind_key('\t', rl_complete);
-
-	using_history();
-
-	while (1)
-	{
-		char *input = readline("minishell> ");
-		if (!input)
-			break ;
-
-		add_history(input);
-		free(input);
-	}
-	return (0);
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
 }
