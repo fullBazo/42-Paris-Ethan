@@ -6,7 +6,7 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 11:44:52 by ehuet             #+#    #+#             */
-/*   Updated: 2026/03/05 14:42:45 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/03/06 13:19:40 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_token	*new_token(char *value, t_type type)
 	token = malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);
-	token->value = ft_strdup(value);
+	token->value = value;
 	token->type = type;
 	token->next = NULL;
 	return (token);
@@ -41,27 +41,34 @@ t_token	*add_token(t_token **list, t_token *token)
 	return (*list);
 }
 
-// todo
+t_token	*tokenisation(char *line)
+{
+	int		start;
+	t_type	type;
+	t_token	*token;
 
-// t_token	*tokenisation(char *line)
-// {
-// 	int i;
-// 	int start;
-// 	t_type type;
-// 	t_token *token;
-
-// 	i = -1;
-// 	while (line[++i])
-// 	{
-// 		if (line[i] == '|' || line[i] == '<' || line[i] == '>')
-// 		{
-// 			new_token();
-// 			\\ TODO
-// 		}
-// 		else
-// 		{
-// 			start = i;
-// 			while ()
-// 		}
-// 	}
-// }
+	int (i) = 0;
+	t_token *(list) = NULL;
+	while (line[i])
+	{
+		skip_space(line, &i);
+		if (is_operator(line[i]))
+		{
+			start = i;
+			type = get_operator_type(line, &i);
+			token = new_token(ft_substr(line, start, i - start), type);
+			add_token(&list, token);
+		}
+		else
+		{
+			start = i;
+			skip_word(line, &i);
+			if (i > start)
+			{
+				token = new_token(ft_substr(line, start, i - start), WORD);
+				add_token(&list, token);
+			}
+		}
+	}
+	return (list);
+}

@@ -1,0 +1,65 @@
+Namespaces 
+
+namespace	Foo {
+
+	int		gl_var = 3;
+	int		f( void ) { return 4; }
+}
+
+namespace Bar {
+
+	int		gl_var = 5;
+	int		f( void ) { return 6; }
+}
+
+aliasing de namespace 
+
+permet de stocker des namespace.
+
+namespace Buf = foo;
+
+opérateur de résolution de portée (ORP)
+
+:: = permet d'acceder a des datas au sein des namespace. 
+
+printf( " gl_var = [%d]\n", Foo::gl_var);
+
+namespace le plus connu : std:: 
+
+contient toute la bibliotheque standard
+
+
+
+STDIO STREAMS
+
+std::cout = sortie standard;
+
+std::endl = retour a la ligne;
+
+<< = redirection;
+
+ex : std::cout << "Hello World !" << std::endl;
+sortie : Hello World !\n$
+
+std::cin = entree standard (peut etre utilisee pour attendre un input utilisateur)
+
+>> redirection;
+
+ex : 
+std::cout << "Input a word: ";
+std::cin >> buff;
+std::cout << "You entered: [" << buff << "]" << std::endl;
+
+CLASSES ET INSTANCES
+
+Constructeurs et destructeurs
+
+class Sample {
+
+public:
+
+	Sample( void );
+	~Sample( void );
+
+};
+

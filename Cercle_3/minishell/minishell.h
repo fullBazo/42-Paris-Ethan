@@ -6,14 +6,14 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 11:13:17 by ehuet             #+#    #+#             */
-/*   Updated: 2026/03/04 14:50:26 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/03/06 13:24:04 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft.h"
+# include "libft/libft.h"
 # include <curses.h>
 # include <dirent.h>
 # include <fcntl.h>
@@ -45,6 +45,7 @@ typedef enum s_type
 	REDIR_IN,
 	REDIR_APP,
 	HEREDOC,
+	ERROR,
 }					t_type;
 
 typedef struct s_token
@@ -64,7 +65,10 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }					t_cmd;
 
-bool				is_space(char c);
-bool				is_word(char c);
+void				skip_word(char *word, int *i);
+void				skip_space(char *word, int *i);
+bool				is_operator(char c);
+t_type				get_operator_type(char *line, int *i);
+t_token				*tokenisation(char *line);
 
 #endif
