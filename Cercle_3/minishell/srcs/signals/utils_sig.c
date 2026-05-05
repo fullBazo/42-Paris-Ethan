@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   utils_sig.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/05 17:02:45 by ehuet             #+#    #+#             */
-/*   Updated: 2026/03/24 10:55:42 by ehuet            ###   ########.fr       */
+/*   Created: 2026/03/12 13:27:49 by ehuet             #+#    #+#             */
+/*   Updated: 2026/03/29 14:02:15 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "signals.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	update_exit_stat(t_shell *shell, int status)
 {
-	size_t	i;
-
-	i = 0;
-	if (n == 0)
-		return (0);
-	while (i < n - 1 && s1[i] && s1[i] == s2[i])
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	if (WIFSIGNALED(status))
+	{
+		shell->exit_stat = 128 + WTERMSIG(status);
+		if (WTERMSIG(status) == SIGQUIT)
+			write(2, "Quit (core dumped)\n", 19);
+		else if (WTERMSIG(status) == SIGINT)
+			write(1, "\n", 1);
+	}
+	else if (WIFEXITED(status))
+		shell->exit_stat = WEXITSTATUS(status);
 }

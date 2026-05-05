@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/05 17:02:45 by ehuet             #+#    #+#             */
-/*   Updated: 2026/03/24 10:55:42 by ehuet            ###   ########.fr       */
+/*   Created: 2026/03/25 14:00:00 by ehuet             #+#    #+#             */
+/*   Updated: 2026/03/29 13:59:33 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../exec.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	exec_pwd(void)
 {
-	size_t	i;
+	char	buf[PATH_MAX];
 
-	i = 0;
-	if (n == 0)
-		return (0);
-	while (i < n - 1 && s1[i] && s1[i] == s2[i])
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	if (!getcwd(buf, PATH_MAX))
+	{
+		ft_putstr_fd("chdir: error retrieving current directory:", 2);
+		ft_putstr_fd("getcwd: cannot access parent directories:", 2);
+		ft_putstr_fd(" No such file or directory\n", 2);
+	}
+	else
+		printf("%s\n", buf);
 }

@@ -6,69 +6,41 @@
 /*   By: ehuet <ehuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 11:13:17 by ehuet             #+#    #+#             */
-/*   Updated: 2026/03/06 13:24:04 by ehuet            ###   ########.fr       */
+/*   Updated: 2026/03/30 13:35:29 by ehuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+/* =============================== INCLUDES ================================ */
+
 # include "libft/libft.h"
-# include <curses.h>
-# include <dirent.h>
+# include "struct.h"
+# include "srcs/exec/exec.h"
+# include "srcs/free/free.h"
+# include "srcs/parsing/parsing.h"
+# include "srcs/signals/signals.h"
+# include <errno.h>
 # include <fcntl.h>
+# include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
-# include <termios.h>
 # include <unistd.h>
 
-typedef enum s_state
-{
-	NO_QUOTE,
-	IN_SINGLE,
-	IN_DOUBLE,
-}					t_state;
+/* ================================ MACROS ================================= */
 
-typedef enum s_type
-{
-	WORD,
-	PIPE,
-	REDIR_OUT,
-	REDIR_IN,
-	REDIR_APP,
-	HEREDOC,
-	ERROR,
-}					t_type;
+# define OUTFILE_PERMS 0644
 
-typedef struct s_token
-{
-	char			*value;
-	t_type			type;
-	struct s_token	*next;
-}					t_token;
+/* ============================== GLOBAL VAR =============================== */
 
-typedef struct s_cmd
-{
-	char			**args;
-	char			*infile;
-	char			*outfile;
-	int				append;
-	char			*heredoc;
-	struct s_cmd	*next;
-}					t_cmd;
-
-void				skip_word(char *word, int *i);
-void				skip_space(char *word, int *i);
-bool				is_operator(char c);
-t_type				get_operator_type(char *line, int *i);
-t_token				*tokenisation(char *line);
+extern int	g_signal;
 
 #endif
