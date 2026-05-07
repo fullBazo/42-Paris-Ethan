@@ -150,7 +150,6 @@ void	PhoneBook::search_contact() {
 		if (!valid_index(input))
 			continue ;
 		c = std::atoi(input.c_str());
-		std::cout << c << std::endl;
 		if (c < 0 || c > _count - 1) {
 			std::cout << "Index out of range, try again !" << std::endl;
 			continue ;
