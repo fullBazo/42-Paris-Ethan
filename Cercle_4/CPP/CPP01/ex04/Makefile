@@ -1,6 +1,6 @@
 NAME = sed_is_for_loser
 SRCS = main.cpp
-HEADERS = Zombie.hpp
+# HEADERS = 
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++
