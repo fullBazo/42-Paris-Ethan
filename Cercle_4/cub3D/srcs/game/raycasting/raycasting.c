@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdupoix <rdupoix@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ethan <ethan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 11:22:40 by ehuet             #+#    #+#             */
-/*   Updated: 2026/07/02 12:04:11 by rdupoix          ###   ########.fr       */
+/*   Updated: 2026/07/11 10:15:06 by ethan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	draw_column(t_game *game, t_col *coll, int col, float ray_angle)
 	height = get_wall_height(game, ray_angle);
 	coll->tex = get_cur_tex(game, ray_angle);
 	if (game->hit_side == 0)
-		coll->tex->tex_x = (int)game->ray_y % 64 * coll->tex->width / 64;
+		coll->tex->tex_x = (int)((game->ray_y / 64.0 - (int)(game->ray_y / 64.0)) * coll->tex->width);
 	else
-		coll->tex->tex_x = (int)game->ray_x % 64 * coll->tex->width / 64;
+    	coll->tex->tex_x = (int)((game->ray_x / 64.0 - (int)(game->ray_x / 64.0)) * coll->tex->width);
 	coll->tex->tex_x = ft_clamp(coll->tex->tex_x, 0, coll->tex->width - 1);
 	coll->start = ft_clamp(360 - height / 2, 0, 720);
 	coll->end = ft_clamp(360 + height / 2, 0, 720);

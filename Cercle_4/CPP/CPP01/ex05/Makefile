@@ -1,6 +1,6 @@
-NAME = sed_is_for_loser
-SRCS = main.cpp
-# HEADERS = 
+NAME = harl
+SRCS = main.cpp Harl.cpp
+#  HEADERS = 
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++
