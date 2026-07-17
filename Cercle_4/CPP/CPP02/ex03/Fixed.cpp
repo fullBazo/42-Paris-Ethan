@@ -7,6 +7,7 @@ Fixed::Fixed( void ) : _value(0){};
 Fixed::Fixed( int const value ) 
 {
 	_value = value << _frac_bits;
+
 	return;
 };
 
@@ -41,6 +42,8 @@ int		Fixed::getValue( void ) const
 void	Fixed::setValue( int const value)
 {
 	_value = value;
+
+	return;
 }
 
 Fixed &Fixed::operator=(const Fixed &rhs)
@@ -105,6 +108,7 @@ bool 	Fixed::operator!=( const Fixed & rhs ) const
 Fixed & Fixed::operator++( void )
 {
 	++_value;
+
 	return *this;
 }
 
@@ -112,12 +116,14 @@ Fixed   Fixed::operator++( int )
 {
 	Fixed tmp( *this);
 	_value++;
+
 	return tmp;
 }
 
 Fixed & Fixed::operator--( void )
 {
 	--_value;
+
 	return *this;
 }
 
@@ -125,6 +131,7 @@ Fixed   Fixed::operator--( int )
 {
 	Fixed tmp( *this);
 	_value--;
+
 	return tmp;
 }
 

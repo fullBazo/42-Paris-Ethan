@@ -9,7 +9,6 @@ class Point
 	private : 
 		Fixed const x;
 		Fixed const y;
-		//...
 	public :
 		Point() : x(0), y(0){};
 		Point( float const a, float const b );
@@ -18,9 +17,9 @@ class Point
 		~Point();
 		Fixed	getX( void ) const;
 		Fixed	getY( void ) const;
-		Fixed	cross( Point const a, Point const b, Point const c);
 };
 
-bool	bsp( Point const a, Point const b, Point const c, Point const point);
+bool			bsp( Point const a, Point const b, Point const c, Point const point);
+Fixed			cross( Point const & a, Point const & b, Point const & c );
 
 #endif
