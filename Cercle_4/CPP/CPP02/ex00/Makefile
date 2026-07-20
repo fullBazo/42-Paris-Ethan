@@ -10,7 +10,7 @@ RM = rm -rf
 
 all :$(NAME) 
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(HEADERS)
 	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.cpp
