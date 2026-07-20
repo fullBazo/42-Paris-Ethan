@@ -9,7 +9,7 @@ Fixed::Fixed() : _fixed_p(0)
 	return;
 }
 
-Fixed::Fixed(Fixed const & src)
+Fixed::Fixed(Fixed const &src)
 {
 	std::cout << "Copy constructor called" << std::endl;
 

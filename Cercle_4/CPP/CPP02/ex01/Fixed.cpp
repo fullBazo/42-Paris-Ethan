@@ -12,8 +12,7 @@ Fixed::Fixed( void )
 Fixed::Fixed( int const value )
 {
 	std::cout << "Int constructor called" << std::endl;
-	// 00000000 00000000 00000000 , 0000000
-	// 
+
 	_fixed_p = value << _frac_bits;
 
 	return;

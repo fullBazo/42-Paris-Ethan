@@ -1,7 +1,7 @@
-NAME = fixed
+NAME = bsp
 
 SRCS = Fixed.cpp main.cpp bsp.cpp Point.cpp
-HEADERS = Fixed.hpp
+HEADERS = Fixed.hpp Point.hpp
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++
@@ -10,7 +10,7 @@ RM = rm -rf
 
 all :$(NAME) 
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(HEADERS)
 	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.cpp
