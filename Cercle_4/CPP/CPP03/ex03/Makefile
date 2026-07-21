@@ -1,11 +1,11 @@
-NAME = ClapTrap
+NAME = DiamondTrap
 
-SRCS = ClapTrap.cpp main.cpp
-HEADERS = ClapTrap.hpp
+SRCS = ClapTrap.cpp main.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
+HEADERS = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++
-FLAGS = -Werror -Wextra -Wall --std=c++98
+FLAGS = -Werror -Wextra -Wall -Wshadow -Wno-shadow --std=c++98
 RM = rm -rf
 
 all :$(NAME)

@@ -4,6 +4,10 @@ ClapTrap::ClapTrap( std::string name ) : _name(name), _hp(10), _mana(10), _dmg(0
 {
 	std::cout << "ClapTrap constructor called." << std::endl;
 }
+ClapTrap::ClapTrap( std::string name, int hp, int mana, int dmg ) : _name(name), _hp(hp), _mana(mana), _dmg(dmg) 
+{
+	std::cout << "ClapTrap constructor parent called." << std::endl;	
+};
 
 ClapTrap::~ClapTrap() 
 {

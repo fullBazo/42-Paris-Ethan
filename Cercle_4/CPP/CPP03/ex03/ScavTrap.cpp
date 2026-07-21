@@ -1,23 +1,23 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
-ClapTrap::ClapTrap( std::string name ) : _name(name), _hp(10), _mana(10), _dmg(0)
-{
-	std::cout << "ClapTrap constructor called." << std::endl;
+ScavTrap::ScavTrap( std::string name ) : ClapTrap(name, 100, 50, 20) {
+
+	std::cout << "ScavTrap constructor called." << std::endl;
 }
 
-ClapTrap::~ClapTrap() 
+ScavTrap::~ScavTrap()
 {
-	std::cout << "ClapTrap destructor called." << std::endl;
+	std::cout << "ScavTrap destructor called." << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap & src)
+ScavTrap::ScavTrap(const ScavTrap & src) : ClapTrap(src)
 {
 	*this = src;
 
 	return;
 }
 
-ClapTrap &	ClapTrap::operator=(const ClapTrap &rhs)
+ScavTrap &	ScavTrap::operator=(const ScavTrap &rhs)
 {
 	if ( this != &rhs )
 	{
@@ -30,7 +30,7 @@ ClapTrap &	ClapTrap::operator=(const ClapTrap &rhs)
 	return *this;
 }
 
-void	ClapTrap::attack( const std::string& target ) 
+void	ScavTrap::attack( const std::string& target ) 
 {
 
 	if (_hp <= 0) {
@@ -45,7 +45,7 @@ void	ClapTrap::attack( const std::string& target )
 
 	_mana -= 1;
 
-	std::cout << "ClapTrap " << _name << " attacks " 
+	std::cout << "ScavTrap " << _name << " attacks " 
 			  << target << ", causing " << _dmg 
 			  << " point(s) of damage!" << std::endl;
 
@@ -53,7 +53,7 @@ void	ClapTrap::attack( const std::string& target )
 
 }
 
-void	ClapTrap::takeDamage( unsigned int amount ) 
+void	ScavTrap::takeDamage( unsigned int amount ) 
 {
 	if (_hp <= 0) {
 		std::cout << _name << " is dead and can't take more damage." << std::endl << std::endl;
@@ -73,7 +73,7 @@ void	ClapTrap::takeDamage( unsigned int amount )
 	std::cout << std::endl;
 }
 
-void	ClapTrap::beRepaired( unsigned int amount ) 
+void	ScavTrap::beRepaired( unsigned int amount ) 
 {
 
 	if (_hp <= 0) {
@@ -93,4 +93,9 @@ void	ClapTrap::beRepaired( unsigned int amount )
 	std::cout << "Mana points left : " << _mana << std::endl;
 	std::cout << "HP left : " << _hp << std::endl << std::endl;
 
+}
+
+void	ScavTrap::guardGate()
+{
+	std::cout << "ScavTrap " << _name << " is now in Gate keeper mode." << std::endl << std::endl;
 }

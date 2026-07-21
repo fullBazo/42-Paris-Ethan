@@ -1,27 +1,29 @@
-#include "ClapTrap.hpp"
+#include "DiamondTrap.hpp"
 
-ClapTrap::ClapTrap( std::string name ) : _name(name), _hp(10), _mana(10), _dmg(0)
-{
-	std::cout << "ClapTrap constructor called." << std::endl;
+DiamondTrap::DiamondTrap( std::string name ) : ClapTrap(name + "_clap_name", 100, 50, 30 ) , ScavTrap(name), FragTrap(name) {
+
+	_name = name;
+	std::cout << "DiamondTrap constructor called." << std::endl;
 }
 
-ClapTrap::~ClapTrap() 
+DiamondTrap::~DiamondTrap()
 {
-	std::cout << "ClapTrap destructor called." << std::endl;
+	std::cout << "DiamondTrap destructor called." << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap & src)
+DiamondTrap::DiamondTrap(const DiamondTrap & src) : ClapTrap(src), ScavTrap(src), FragTrap(src)
 {
 	*this = src;
 
 	return;
 }
 
-ClapTrap &	ClapTrap::operator=(const ClapTrap &rhs)
+DiamondTrap &	DiamondTrap::operator=(const DiamondTrap &rhs)
 {
 	if ( this != &rhs )
 	{
 		_name = rhs._name;
+		ClapTrap::_name = rhs.ClapTrap::_name;
 		_hp = rhs._hp;
 		_mana = rhs._mana;
 		_dmg = rhs._dmg;
@@ -30,30 +32,7 @@ ClapTrap &	ClapTrap::operator=(const ClapTrap &rhs)
 	return *this;
 }
 
-void	ClapTrap::attack( const std::string& target ) 
-{
-
-	if (_hp <= 0) {
-		std::cout << _name << " can't attack while dead. Dumbass." << std::endl << std::endl;
-		return ;
-	}
-
-	else if ( _mana <= 0 ) {
-		std::cout << _name << " can't attack with no mana." << std::endl << std::endl; 
-		return ; 
-	}
-
-	_mana -= 1;
-
-	std::cout << "ClapTrap " << _name << " attacks " 
-			  << target << ", causing " << _dmg 
-			  << " point(s) of damage!" << std::endl;
-
-	std::cout << "Mana points left : " << _mana << std::endl << std::endl;
-
-}
-
-void	ClapTrap::takeDamage( unsigned int amount ) 
+void	DiamondTrap::takeDamage( unsigned int amount ) 
 {
 	if (_hp <= 0) {
 		std::cout << _name << " is dead and can't take more damage." << std::endl << std::endl;
@@ -73,7 +52,7 @@ void	ClapTrap::takeDamage( unsigned int amount )
 	std::cout << std::endl;
 }
 
-void	ClapTrap::beRepaired( unsigned int amount ) 
+void	DiamondTrap::beRepaired( unsigned int amount ) 
 {
 
 	if (_hp <= 0) {
@@ -93,4 +72,9 @@ void	ClapTrap::beRepaired( unsigned int amount )
 	std::cout << "Mana points left : " << _mana << std::endl;
 	std::cout << "HP left : " << _hp << std::endl << std::endl;
 
+}
+
+void	DiamondTrap::whoAmI()
+{
+    std::cout << "DiamondTrap name : " << _name << ", ClapTrap name : " << ClapTrap::_name << std::endl;
 }

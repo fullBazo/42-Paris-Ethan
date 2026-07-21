@@ -1,23 +1,23 @@
-#include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 
-ClapTrap::ClapTrap( std::string name ) : _name(name), _hp(10), _mana(10), _dmg(0)
-{
-	std::cout << "ClapTrap constructor called." << std::endl;
+FragTrap::FragTrap( std::string name ) : ClapTrap(name, 100, 100, 30) {
+
+	std::cout << "FragTrap constructor called." << std::endl;
 }
 
-ClapTrap::~ClapTrap() 
+FragTrap::~FragTrap()
 {
-	std::cout << "ClapTrap destructor called." << std::endl;
+	std::cout << "FragTrap destructor called." << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap & src)
+FragTrap::FragTrap(const FragTrap & src) : ClapTrap(src)
 {
 	*this = src;
 
 	return;
 }
 
-ClapTrap &	ClapTrap::operator=(const ClapTrap &rhs)
+FragTrap &	FragTrap::operator=(const FragTrap &rhs)
 {
 	if ( this != &rhs )
 	{
@@ -30,7 +30,7 @@ ClapTrap &	ClapTrap::operator=(const ClapTrap &rhs)
 	return *this;
 }
 
-void	ClapTrap::attack( const std::string& target ) 
+void	FragTrap::attack( const std::string& target ) 
 {
 
 	if (_hp <= 0) {
@@ -45,7 +45,7 @@ void	ClapTrap::attack( const std::string& target )
 
 	_mana -= 1;
 
-	std::cout << "ClapTrap " << _name << " attacks " 
+	std::cout << "FragTrap " << _name << " attacks " 
 			  << target << ", causing " << _dmg 
 			  << " point(s) of damage!" << std::endl;
 
@@ -53,7 +53,7 @@ void	ClapTrap::attack( const std::string& target )
 
 }
 
-void	ClapTrap::takeDamage( unsigned int amount ) 
+void	FragTrap::takeDamage( unsigned int amount ) 
 {
 	if (_hp <= 0) {
 		std::cout << _name << " is dead and can't take more damage." << std::endl << std::endl;
@@ -73,7 +73,7 @@ void	ClapTrap::takeDamage( unsigned int amount )
 	std::cout << std::endl;
 }
 
-void	ClapTrap::beRepaired( unsigned int amount ) 
+void	FragTrap::beRepaired( unsigned int amount ) 
 {
 
 	if (_hp <= 0) {
@@ -93,4 +93,9 @@ void	ClapTrap::beRepaired( unsigned int amount )
 	std::cout << "Mana points left : " << _mana << std::endl;
 	std::cout << "HP left : " << _hp << std::endl << std::endl;
 
+}
+
+void	FragTrap::highFivesGuys()
+{
+	std::cout << "FragTrap is now high fiving himself." << std::endl << std::endl;
 }
