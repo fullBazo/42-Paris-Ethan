@@ -32,20 +32,65 @@ ClapTrap &	ClapTrap::operator=(const ClapTrap &rhs)
 
 void	ClapTrap::attack( const std::string& target ) 
 {
-	if (_hp <= 0) 
-		std::cout << _name << "can't attack while dead. Dumbass." << std::endl; 
-	else if (_mana <= 0 )
-		std::cout << _name << "can't attack with no mana." << std::endl; 
+
+	if (_hp <= 0) {
+		std::cout << _name << " can't attack while dead. Dumbass." << std::endl << std::endl;
+		return ;
+	}
+
+	else if ( _mana <= 0 ) {
+		std::cout << _name << " can't attack with no mana." << std::endl << std::endl; 
+		return ; 
+	}
+
 	_mana -= 1;
+
 	std::cout << "ClapTrap " << _name << " attacks " 
 			  << target << ", causing " << _dmg 
 			  << " point(s) of damage!" << std::endl;
+
+	std::cout << "Mana points left : " << _mana << std::endl << std::endl;
+
 }
 
 void	ClapTrap::takeDamage( unsigned int amount ) 
 {
+	if (_hp <= 0) {
+		std::cout << _name << " is dead and can't take more damage." << std::endl << std::endl;
+		return ;
+	}
+
 	_hp -= amount;
-	std::cout << 
+
+	std::cout << _name << " took " << amount << " point(s) of damage(s) !" << std::endl;
+
+	std::cout << "HP left : " << _hp << std::endl;
+
+	if (_hp <= 0) {
+		std::cout << _name << " is now dead." << std::endl << std::endl;
+		return ;
+	}
+	std::cout << std::endl;
 }
 
-void	ClapTrap::beRepaired( unsigned int amount ) {};
+void	ClapTrap::beRepaired( unsigned int amount ) 
+{
+
+	if (_hp <= 0) {
+		std::cout << _name << " can't be repaired while dead." << std::endl << std::endl;
+		return ;
+	}
+
+	else if (_mana <= 0) {
+		std::cout << _name << " can't be repaired with no mana left." << std::endl << std::endl;
+		return ;
+	}
+
+	_mana -= 1;
+	_hp += amount;
+
+	std::cout << _name << " repaired himself and regained " << amount << " HP !" << std::endl;
+	std::cout << "Mana points left : " << _mana << std::endl;
+	std::cout << "HP left : " << _hp << std::endl << std::endl;
+
+}
