@@ -19,7 +19,12 @@ Animal	&Animal::operator=( Animal const &rhs )
 	return *this;
 }
 
-void	Animal::makeSound()
+const std::string	Animal::getType() const
 {
-	
+	return _type;
+}
+
+void	Animal::makeSound() const
+{
+	std::cout << "*Random Animal sound*" << std::endl;
 }
