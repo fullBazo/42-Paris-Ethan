@@ -1,8 +1,14 @@
 #include "Animal.hpp"
 
-Animal::Animal() : _type("Animal"){};
+Animal::Animal() : _type("Animal")
+{
+	std::cout << "Animal constructor called." << std::endl;
+}
 
-Animal::~Animal() {};
+Animal::~Animal() 
+{
+	std::cout << "Animal destructor called." << std::endl;
+}
 
 Animal::Animal( Animal const &src )
 {
