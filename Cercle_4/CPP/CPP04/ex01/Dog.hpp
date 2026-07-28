@@ -16,7 +16,7 @@ class Dog : public Animal {
 		Dog( Dog const &src );
 		Dog &operator=( Dog const &src );
 
-		Brain*				getBrain( void ) const;
+		virtual Brain*				getBrain( void ) const;
 		virtual const std::string	getType() const;
 		virtual void				makeSound() const;
 

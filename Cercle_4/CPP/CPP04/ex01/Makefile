@@ -1,4 +1,4 @@
-NAME = Animal
+NAME = Brain
 
 SRCS = Animal.cpp main.cpp Cat.cpp Dog.cpp Brain.cpp
 HEADERS = Animal.hpp Cat.hpp Dog.hpp Brain.hpp

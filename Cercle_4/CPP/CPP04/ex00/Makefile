@@ -10,10 +10,10 @@ RM = rm -rf
 
 all :$(NAME)
 
-$(NAME) : $(OBJS) $(HEADERS)
+$(NAME) : $(OBJS) 
 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp $(HEADERS)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
