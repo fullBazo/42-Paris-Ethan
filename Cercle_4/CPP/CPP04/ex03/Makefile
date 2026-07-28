@@ -1,7 +1,7 @@
-NAME = Brain
+NAME = Materia
 
-SRCS = Animal.cpp main.cpp Cat.cpp Dog.cpp Brain.cpp
-HEADERS = Animal.hpp Cat.hpp Dog.hpp Brain.hpp
+SRCS = main.cpp AMateria.cpp ICharacter.cpp IMateriaSource.cpp 
+HEADERS = AMateria.hpp ICharacter.hpp IMateriaSource.hpp
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++

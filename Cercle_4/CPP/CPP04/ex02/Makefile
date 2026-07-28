@@ -1,7 +1,7 @@
-NAME = Brain
+NAME = AAnimal
 
-SRCS = Animal.cpp main.cpp Cat.cpp Dog.cpp Brain.cpp
-HEADERS = Animal.hpp Cat.hpp Dog.hpp Brain.hpp
+SRCS = AAnimal.cpp main.cpp Cat.cpp Dog.cpp Brain.cpp
+HEADERS = AAnimal.hpp Cat.hpp Dog.hpp Brain.hpp
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++
