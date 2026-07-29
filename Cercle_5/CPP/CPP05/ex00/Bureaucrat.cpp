@@ -28,7 +28,6 @@ Bureaucrat& Bureaucrat::operator=( const Bureaucrat &rhs )
 {
 	if ( this != &rhs )
 	{
-		_name = rhs._name;
 		_grade = rhs._grade;
 	}
 	
@@ -47,20 +46,18 @@ int	Bureaucrat::getGrade( void ) const
 
 void	Bureaucrat::incrementGrade( void ) 
 {
-	if ( _grade < 1 )
+	if ( _grade == 1 )
 	{
-		std::cout << _name << " is already at his highest. You don't wan't him/her to develop a God complex." << std::endl;
-		return ;
+		throw Bureaucrat::GradeTooHighException();
 	}
 	_grade--;
 }
 
 void	Bureaucrat::decrementGrade( void )
 {
-	if ( _grade > 150 )
+	if ( _grade == 150 )
 	{
-		std::cout << _name << " is already at his lowest. He/she doesn't need that rn." << std::endl;
-		return ;
+		throw Bureaucrat::GradeTooHighException();
 	}
 	_grade++;
 }
@@ -68,5 +65,7 @@ void	Bureaucrat::decrementGrade( void )
 std::ostream &operator<<( std::ostream &os, const Bureaucrat &rhs )
 {
 	os << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << ".";
+
+	return os;
 }
 

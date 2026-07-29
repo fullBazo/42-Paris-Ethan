@@ -1,15 +1,27 @@
 #include "Bureaucrat.hpp"
-#include "GradeTooHighException.hpp"
-#include "GradeTooLowException.hpp"
 
 int	main ( void )
 {
-	Bureaucrat a( 190 );
 
 	try
 	{
+		Bureaucrat a( "Toto" , 5 );
 
+		a.incrementGrade();
+		std::cout << a << std::endl;
+		a.incrementGrade();
+		std::cout << a << std::endl;
+		a.incrementGrade();
+		std::cout << a << std::endl;
+		a.incrementGrade();
+		std::cout << a << std::endl;
+		a.incrementGrade();
+		std::cout << a << std::endl;
+	}
+	catch ( std::exception &e )
+	{
+		std::cout << e.what() << std::endl;
 	}
 
 }
-:
+

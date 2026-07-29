@@ -29,18 +29,18 @@ class Bureaucrat {
 		{
 			virtual const char* what() const throw()
 			{
-				return ( "Bureaucrat's grade is too high.\nIt must be between 1 and 150.\n" )
+				return ( "Bureaucrat's grade is too high.\nIt must be between 1 and 150." );
 			}
-		}
+		};
 
 		class GradeTooLowException : public std::exception
 		{
 			virtual const char* what() const throw()
 			{
-				return ( "Bureaucrat's grade is too low.\nIt must be between 1 and 150.\n" );
+				return ( "Bureaucrat's grade is too low.\nIt must be between 1 and 150." );
 			}
-		}
-}
+		};
+};
 
 std::ostream &operator<<( std::ostream &os, const Bureaucrat &rhs );
 
