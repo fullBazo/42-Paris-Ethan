@@ -5,7 +5,7 @@
 # include <iostream>
 # include <stdexcept>
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 
@@ -27,7 +27,8 @@ class Bureaucrat {
 		void	incrementGrade( void );
 		void	decrementGrade( void );
 
-		void	signForm( Form &form );
+		void	signForm( AForm &form );
+		void	executeForm( AForm const &form ) const;
 
 		class GradeTooHighException : public std::exception
 		{
